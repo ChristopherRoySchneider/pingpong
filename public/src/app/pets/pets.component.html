@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+    <h3>Favorite Pets</h3>
+    <div class="row">
+      <div class="col">
+        <h5 class="d-inline-block">Sort By:</h5>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByDate()">
+          Creation Date
+        </button>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByName()">
+          Name
+        </button>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByType()">
+          Type
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="pets.length > 0">
+      <div *ngFor="let pet of pets">
+        <div class="card mt-2 mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{ pet.name }}</h5>
+            <p class="card-text">Type: {{ pet.type }}</p>
+            <a class=" btn btn-primary" href="/view/{{ pet._id }}">View</a>
+            <a class="ml-2 btn btn-primary" href="/edit/{{ pet._id }}">Edit</a>
+
+            <button class="ml-2 btn btn-primary" (click)="deletePet(pet._id)">
+              Adopt
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

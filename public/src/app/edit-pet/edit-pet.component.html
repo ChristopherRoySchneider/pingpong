@@ -1,0 +1,85 @@
+
+<div class="row">
+  <div class="col">
+      <h1>Edit Pet</h1>
+
+      <div *ngIf="errors">
+          <h3>Validation Errors</h3>
+          <p>{{errors.message}}</p>
+        </div>
+      <form (submit)="putPet(petToEdit)">
+        <div class="form-group">
+          <label for="petToEdit.name">Pet Name</label>
+          <input
+            class="form-control"
+            type="text"
+            id="petToEdit.name"
+            name="petToEdit.name"
+            [(ngModel)]="petToEdit['name']"
+            autofocus
+          />
+        </div>
+        <div class="form-group">
+          <label for="petToEdit.type">Pet Type</label>
+          <input
+            class="form-control"
+            type="text"
+            id="petToEdit.type"
+            name="petToEdit.type"
+            [(ngModel)]="petToEdit['type']"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="petToEdit.description">Pet Description</label>
+          <input
+            class="form-control"
+            type="text"
+            id="petToEdit.description"
+            name="petToEdit.description"
+            [(ngModel)]="petToEdit['description']"
+          />
+        </div>
+        <p>Skills:</p>
+        <div class="ml-3">
+          <div class="form-group">
+            <label for="petToEdit.skill1">Skill 1:</label>
+            <input
+              class="form-control"
+              type="text"
+              id="petToEdit.skill1"
+              name="petToEdit.skill1"
+              [(ngModel)]="petToEdit['skill1']"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="petToEdit.skill2">Skill 2:</label>
+            <input
+              class="form-control"
+              type="text"
+              id="petToEdit.skill2"
+              name="petToEdit.skill2"
+              [(ngModel)]="petToEdit['skill2']"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="petToEdit.skill3">Skill 3:</label>
+            <input
+              class="form-control"
+              type="text"
+              id="petToEdit.skill3"
+              name="petToEdit.skill3"
+              [(ngModel)]="petToEdit['skill3']"
+            />
+          </div>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Edit Pet" />
+        <a href="/view/{{petToEdit['_id']}}" class="ml-2 btn btn-primary">Cancel</a>
+      </form>
+      <p>{{ petToEdit | json }}</p>
+  </div>
+</div>
+
