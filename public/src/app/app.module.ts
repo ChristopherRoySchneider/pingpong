@@ -5,27 +5,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-
-import { PetsComponent } from './pets/pets.component';
-
-import { NewpetComponent } from './newpet/newpet.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
-import { EditPetComponent } from './edit-pet/edit-pet.component';
 import { SharedModule } from './shared/shared.module';
 import { ChatModule } from './chat/chat.module';
+import { GameComponent } from './game/game.component';
+import { GlanceComponent } from './glance/glance.component';
+import { TableComponent } from './table/table.component';
+import { TermsComponent } from './terms/terms.component';
+import { RulesComponent } from './rules/rules.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-    PetsComponent,
-
-    NewpetComponent,
     PageNotFoundComponent,
-    PetByIdComponent,
-    EditPetComponent
+    TableComponent,
+    GlanceComponent,
+    TermsComponent,
+    RulesComponent,
+    GameComponent
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -37,4 +36,5 @@ import { ChatModule } from './chat/chat.module';
   providers: [HttpService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
