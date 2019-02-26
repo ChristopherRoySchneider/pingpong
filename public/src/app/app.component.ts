@@ -12,26 +12,26 @@ export class AppComponent implements OnInit {
   newMatch: any;
   title = 'app';
   showMatchEditFormId = null;
-  matchs = [];
+  matches = [];
   matchToEdit = {};
   newRating={};
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     console.log('ngOnInit');
-    this.getMatchsFromService();
+    this.getMatchesFromService();
     // this.getMatchByIdFromService();
     this.newMatch = {  };
   }
 
 
-  getMatchsFromService() {
-    let observable = this._httpService.getMatchs();
+  getMatchesFromService() {
+    let observable = this._httpService.getMatches();
     observable.subscribe(data => {
-      console.log('Got our matchs the new way!', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      console.log('Got our matches the new way!', data);
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
-      this.matchs = data['data'];
-      console.log('this.matchs', this.matchs);
+      this.matches = data['data'];
+      console.log('this.matches', this.matches);
     });
   }
 
@@ -39,14 +39,14 @@ export class AppComponent implements OnInit {
     let observable = this._httpService.getMatchById(id);
     observable.subscribe(data => {
       console.log('Got our match by id the new way!', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       this.matchToEdit = data['data'][0];
       console.log('this.matchToEdit', this.matchToEdit);
     });
   }
   onButtonClick(): void {
-    this.getMatchsFromService();
+    this.getMatchesFromService();
     console.log(`Click event is working`);
   }
   onButtonClickMatch(id?: string): void {
@@ -62,10 +62,10 @@ export class AppComponent implements OnInit {
     let observable = this._httpService.addMatch(newMatch);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       this.newMatch = { };
-      this.getMatchsFromService();
+      this.getMatchesFromService();
     });
   }
   onSubmitRating( newRating, matchId) {
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
 
       this.newRating = { };
       this.showMatchEditFormId=null;
-      this.getMatchsFromService();
+      this.getMatchesFromService();
       this.getMatchByIdFromService(matchId);
 
 
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit {
     observable.subscribe(data => {
       console.log('deleted item', data);
       console.log(`delete match by id ${id}`);
-      this.getMatchsFromService();
+      this.getMatchesFromService();
     });
   }
   putMatch(updatedMatch) {
@@ -99,10 +99,10 @@ export class AppComponent implements OnInit {
     let observable = this._httpService.putMatch(updatedMatch);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       this.matchToEdit = { };
-      this.getMatchsFromService();
+      this.getMatchesFromService();
     });
   }
   dataFromChild(eventData) {
@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
     console.log('********pre', this.matchToEdit);
     this.matchToEdit = eventData;
     console.log('********post', this.matchToEdit);
-    this.getMatchsFromService();
+    this.getMatchesFromService();
   }
 
 }

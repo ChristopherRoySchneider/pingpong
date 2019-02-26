@@ -45,7 +45,7 @@ export class EditMatchComponent implements OnInit {
     let observable = this._httpService.getMatchById(id);
     observable.subscribe(data => {
       console.log('Got our match by id the new way!', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       this.matchToEdit = data['data'][0];
       console.log('this.matchToEdit', this.matchToEdit);

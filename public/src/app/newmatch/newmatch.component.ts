@@ -26,7 +26,7 @@ export class NewmatchComponent implements OnInit {
     let observable = this._httpService.addMatch(newMatch);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       if (data['message'] == 'Error') {
         console.log('Error saving Match');

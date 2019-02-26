@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { MatchsComponent } from './matchs/matchs.component';
+import { MatchesComponent } from './matches/matches.component';
 
 import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -19,7 +19,7 @@ import { ChatModule } from './chat/chat.module';
   declarations: [
     AppComponent,
 
-    MatchsComponent,
+    MatchesComponent,
 
     NewmatchComponent,
     PageNotFoundComponent,

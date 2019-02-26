@@ -1,5 +1,5 @@
 import { MatchByIdComponent } from './match-by-id/match-by-id.component';
-import { MatchsComponent } from './matchs/matchs.component';
+import { MatchesComponent } from './matches/matches.component';
 // import { AlphaComponent } from './alpha/alpha.component';
 // import { BetaComponent } from './beta/beta.component';
 // import { GammaComponent } from './gamma/gamma.component';
@@ -10,7 +10,7 @@ import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
 const routes: Routes = [
-  { path: 'home',component: MatchsComponent },
+  { path: 'home',component: MatchesComponent },
   { path: 'new',component: NewmatchComponent },
   // use a colon and parameter name to include a parameter in the url
   { path: 'edit/:id', component: EditMatchComponent },

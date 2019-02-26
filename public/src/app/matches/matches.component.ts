@@ -3,17 +3,17 @@ import { HttpService } from "../http.service";
 import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: "app-matchs",
-  templateUrl: "./matchs.component.html",
-  styleUrls: ["./matchs.component.css"],
+  selector: "app-matches",
+  templateUrl: "./matches.component.html",
+  styleUrls: ["./matches.component.css"],
   encapsulation: ViewEncapsulation.None
 })
-export class MatchsComponent implements OnInit {
+export class MatchesComponent implements OnInit {
   newMatch: any;
 
   title = "app";
   showMatchEditFormId = null;
-  matchs = [];
+  matches = [];
   matchToEdit = {};
   newRating = {};
   sortAscending = true;
@@ -21,16 +21,16 @@ export class MatchsComponent implements OnInit {
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     console.log("ngOnInit");
-    this.getMatchsFromService();
+    this.getMatchesFromService();
     // this.getMatchByIdFromService();
     this.newMatch = {};
   }
 
-  getMatchsFromService() {
-    let observable = this._httpService.getMatchs();
+  getMatchesFromService() {
+    let observable = this._httpService.getMatches();
     observable.subscribe(data => {
-      console.log("Got our matchs the new way!", data);
-      // In this example, the array of matchs is assigned to the key 'matchs' in the data object.
+      console.log("Got our matches the new way!", data);
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
       // This may be different for you, depending on how you set up your Match API.
       var temp = data["data"];
       console.log(typeof temp);
@@ -57,8 +57,8 @@ export class MatchsComponent implements OnInit {
       //   }
       // }
       console.log(temp);
-      this.matchs = temp;
-      console.log("this.matchs", this.matchs);
+      this.matches = temp;
+      console.log("this.matches", this.matches);
     });
   }
 
@@ -67,25 +67,25 @@ export class MatchsComponent implements OnInit {
     observable.subscribe(data => {
       console.log("deleted item", data);
       console.log(`delete match by id ${id}`);
-      this.getMatchsFromService();
+      this.getMatchesFromService();
     });
   }
   sortByDate(): void {
     this.sortField = "_id";
     this.changeSortOrder();
-    this.getMatchsFromService();
+    this.getMatchesFromService();
 
   }
   sortByName(): void {
     this.sortField = "name";
     this.changeSortOrder();
-    this.getMatchsFromService();
+    this.getMatchesFromService();
 
   }
   sortByType(): void {
     this.sortField = "type";
     this.changeSortOrder();
-    this.getMatchsFromService();
+    this.getMatchesFromService();
 
   }
   changeSortOrder() {

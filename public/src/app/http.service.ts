@@ -8,31 +8,31 @@ export class HttpService {
   constructor(private _http: HttpClient) {
 
   }
-  getMatchs() {
+  getMatches() {
 
-    return this._http.get('/matchs');
+    return this._http.get('/matches');
       }
   getMatchById(id = '5c69e4472cc64c61b0628c5b') {
     // our http response is an Observable, store it in a variable
-    return this._http.get('/matchs/' + id);
+    return this._http.get('/matches/' + id);
     // subscribe to the Observable and provide the code we would like to do with our data from the response
     // tempObservable.subscribe(data => console.log('Got our match by id!', data));
   }
 
 
   addMatch(newmatch) {
-    return this._http.post('/matchs', newmatch);
+    return this._http.post('/matches', newmatch);
   }
   deleteMatch(id) {
-    return this._http.delete(`/matchs/${id}`);
+    return this._http.delete(`/matches/${id}`);
   }
   putMatch(updatedMatch) {
-    return this._http.put(`/matchs/${updatedMatch._id}`,updatedMatch);
+    return this._http.put(`/matches/${updatedMatch._id}`,updatedMatch);
   }
   addRating(id,newrating) {
-    return this._http.post(`/matchs/${id}/ratings`, newrating);
+    return this._http.post(`/matches/${id}/ratings`, newrating);
   }
   likeMatch(id) {
-    return this._http.get(`/matchs/${id}/like`, );
+    return this._http.get(`/matches/${id}/like`, );
   }
 }

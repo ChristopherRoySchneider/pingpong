@@ -9,7 +9,7 @@ module.exports = {
                 console.log('something went wrong');
                 res.json({ message: "Error", error: err })
             } else { // else console.log that we did well and then redirect to the root route
-                // console.log('got all matchs:', match);
+                // console.log('got all matches:', match);
                 res.json({ message: "Success", data: match })
             }
         }).sort('-_id')
@@ -37,7 +37,7 @@ module.exports = {
                 console.log('something went wrong');
                 res.json({ message: "Error", error: err })
             } else { // else console.log that we did well and then redirect to the root route
-                console.log('got matchs by name:', p_by_name);
+                console.log('got matches by name:', p_by_name);
                 res.json({ message: "Success", data: p_by_name })
             }
         })
