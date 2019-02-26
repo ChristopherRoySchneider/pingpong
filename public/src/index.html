@@ -7,15 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="/assets/js/svg.js"></script>
+    <script>
+      SVG.on(document, 'DOMContentLoaded', function() {
+        console.log("in the script")
+        var draw = SVG('drawing').size(640, 356);
+        var rect = draw.rect(640, 356).attr({
+          'fill': '#022b6d',
+          'stroke': '#fff',
+          'stroke-width': 10
+        });
+        var line = draw.line([[0, 178], [640, 178]]).stroke({
+          'color': '#fff',
+          'width': 5
+        })
+        var line = draw.line([[320, 0], [320, 356]]).stroke({
+          'color': '#fff',
+          'width': 5
+        })
+    
+        $("#drawing").click(function(e){
+          var parentOffset = $(this).offset();
+          var relX = e.pageX - parentOffset.left;
+          var relY = e.pageY - parentOffset.top;
+          console.log(relX, relY);
+          draw.circle(10).attr({
+              cx: relX,
+              cy: relY,
+              fill: '#fff'
+          });
+        });
+      });
+    </script>
   </head>
   <body>
 
   <app-root></app-root>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
   </body>
 </html>

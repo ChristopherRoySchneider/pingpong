@@ -13,6 +13,8 @@ import { GlanceComponent } from './glance/glance.component';
 import { TableComponent } from './table/table.component';
 import { TermsComponent } from './terms/terms.component';
 import { RulesComponent } from './rules/rules.component';
+import { BoxScoreComponent } from './box-score/box-score.component';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RulesComponent } from './rules/rules.component';
     GlanceComponent,
     TermsComponent,
     RulesComponent,
-    GameComponent
+    GameComponent,
+    BoxScoreComponent,
+    SummaryComponent
   ],
 
   imports: [
