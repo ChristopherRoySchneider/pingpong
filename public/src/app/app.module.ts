@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { PetsComponent } from './pets/pets.component';
+import { MatchesComponent } from './matches/matches.component';
 
-import { NewpetComponent } from './newpet/newpet.component';
+import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
-import { EditPetComponent } from './edit-pet/edit-pet.component';
+
+import { MatchByIdComponent } from './match-by-id/match-by-id.component';
+import { EditMatchComponent } from './edit-match/edit-match.component';
 
 
 
@@ -19,16 +20,17 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 
+
 @NgModule({
   declarations: [
     AppComponent,
 
-    PetsComponent,
+    MatchesComponent,
 
-    NewpetComponent,
+    NewmatchComponent,
     PageNotFoundComponent,
-    PetByIdComponent,
-    EditPetComponent
+    MatchByIdComponent,
+    EditMatchComponent
   ],
   imports: [
     BrowserModule,

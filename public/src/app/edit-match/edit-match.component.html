@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+      <h1>Edit Match</h1>
+
+      <div *ngIf="errors">
+          <h3>Validation Errors</h3>
+          <p>{{errors.message}}</p>
+        </div>
+
+        <form (submit)="putMatch(matchToEdit)">
+          <div class="form-group">
+            <label for="matchToEdit.player1">Player1</label>
+            <input
+              class="form-control"
+              type="text"
+              id="matchToEdit.player1"
+              name="matchToEdit.player1"
+              [(ngModel)]="matchToEdit['player1']"
+              autofocus
+            />
+          </div>
+          <div class="form-group">
+            <label for="matchToEdit.player2">Player2</label>
+            <input
+              class="form-control"
+              type="text"
+              id="matchToEdit.player2"
+              name="matchToEdit.player2"
+              [(ngModel)]="matchToEdit['player2']"
+            />
+          </div>
+
+        <input class="btn btn-primary" type="submit" value="Edit Match" />
+        <a href="/view/{{matchToEdit['_id']}}" class="ml-2 btn btn-primary">Cancel</a>
+      </form>
+      <p>{{ matchToEdit | json }}</p>
+  </div>
+</div>
+

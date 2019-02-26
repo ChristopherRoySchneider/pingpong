@@ -3,12 +3,13 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-newpet',
-  templateUrl: './newpet.component.html',
-  styleUrls: ['./newpet.component.css']
+  selector: 'app-newmatch',
+  templateUrl: './newmatch.component.html',
+  styleUrls: ['./newmatch.component.css']
 })
-export class NewpetComponent implements OnInit {
-  newPet = {};
+export class NewmatchComponent implements OnInit {
+  newMatch = {};
+  newGame = {};
   errors = null;
   constructor(
     private _httpService: HttpService,
@@ -21,22 +22,23 @@ export class NewpetComponent implements OnInit {
       console.log('params', params);
     });
   }
-  addPet(newPet) {
-    console.log(newPet);
-    let observable = this._httpService.addPet(newPet);
+  addMatch(newMatch) {
+    console.log(newMatch);
+    let observable = this._httpService.addMatch(newMatch);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of pets is assigned to the key 'pets' in the data object.
-      // This may be different for you, depending on how you set up your Pet API.
+      // In this example, the array of matches is assigned to the key 'matches' in the data object.
+      // This may be different for you, depending on how you set up your Match API.
       if (data['message'] == 'Error') {
-        console.log('Error saving Pet');
+        console.log('Error saving Match');
         this.errors = data['error'];
         console.log(this.errors);
       } else {
-        this.newPet = {};
+        this.newMatch = {};
         this._router.navigate(['/']);
         this.errors = null;
       }
     });
   }
+
 }

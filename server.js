@@ -1,4 +1,3 @@
-
 var express = require('express');
 var app = express();
 require('./server/config/mongoose')
@@ -34,7 +33,7 @@ app.set('view engine', 'ejs');
 // require('./server/config/user_routes.js')(app)
 // require('./server/config/tenrec_routes.js')(app)
 // require('./server/config/cake_routes.js')(app)
-require('./server/config/pet_routes.js')(app)
+require('./server/config/match_routes.js')(app)
 app.all("*", (req,res,next) => {
     res.sendFile(path.resolve("./public/dist/public/index.html"))
   });
