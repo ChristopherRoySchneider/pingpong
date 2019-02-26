@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+    <h3>Pingpong Matches</h3>
+    <div class="row">
+      <div class="col">
+        <h5 class="d-inline-block">Sort By:</h5>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByDate()">
+          Creation Date
+        </button>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByName()">
+          Name
+        </button>
+
+        <button class="ml-2 btn btn-primary" (click)="sortByType()">
+          Type
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="matches.length > 0">
+      <div *ngFor="let match of matches">
+        <div class="card mt-2 mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Player 1: {{ match.player1 }}</h5>
+            <h5 class="card-title">Player 2: {{ match.player2 }}</h5>
+            <a class=" btn btn-primary" href="/view/{{ match._id }}">View</a>
+            <a class="ml-2 btn btn-primary" href="/edit/{{ match._id }}">Edit</a>
+
+            <button class="ml-2 btn btn-primary" (click)="deleteMatch(match._id)">
+              Adopt
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

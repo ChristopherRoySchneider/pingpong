@@ -1,4 +1,3 @@
-
 var express = require('express');
 var app = express();
 require('./server/config/mongoose')
@@ -34,7 +33,7 @@ app.set('view engine', 'ejs');
 // require('./server/config/user_routes.js')(app)
 // require('./server/config/tenrec_routes.js')(app)
 // require('./server/config/cake_routes.js')(app)
-require('./server/config/pet_routes.js')(app)
+require('./server/config/match_routes.js')(app)
 app.all("*", (req,res,next) => {
     res.sendFile(path.resolve("./public/dist/public/index.html"))
   });
@@ -51,6 +50,11 @@ const io = require('socket.io')(server);
 var numClicks = 0;
 io.on('connection', function (socket) { //2
     console.log("connected")
+    socket.on("message", function(data){
+        console.log("******************* here")
+        console.log(data)
+        socket.emit("message",{msg: `server got message: ${data}`})
+    })
     socket.emit('greeting', { msg: 'Greetings, from server Node, brought to you by Sockets! -Server' }); //3
     socket.on('Pushing_epic_button', function (data) {
         numClicks += 1
@@ -63,5 +67,6 @@ io.on('connection', function (socket) { //2
         console.log("numClicks: ", numClicks); //8 (note: this log will be on your server's terminal)
         io.emit('updated_count', { numClicks: numClicks });
     });
+    socket.emit('message',{ msg: 'emit new from server' })
 
 });

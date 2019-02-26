@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <h1>Know of a match needing a home?</h1>
+    <div *ngIf="errors">
+      <h3>Validation Errors</h3>
+      <p>{{ errors.message }}</p>
+    </div>
+    <form (submit)="addMatch(newMatch)">
+      <div class="form-group">
+        <label for="newMatch.player1">Player1</label>
+        <input
+          class="form-control"
+          type="text"
+          id="newMatch.player1"
+          name="newMatch.player1"
+          [(ngModel)]="newMatch['player1']"
+          autofocus
+        />
+      </div>
+      <div class="form-group">
+        <label for="newMatch.player2">Player2</label>
+        <input
+          class="form-control"
+          type="text"
+          id="newMatch.player2"
+          name="newMatch.player2"
+          [(ngModel)]="newMatch['player2']"
+        />
+      </div>
+
+      <input class="btn btn-primary" type="submit" value="Add Match" />
+      <a href="/" class="ml-2 btn btn-primary">Cancel</a>
+    </form>
+  </div>
+</div>

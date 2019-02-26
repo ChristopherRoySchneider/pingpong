@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SharedModule } from './shared/shared.module';
-import { ChatModule } from './chat/chat.module';
+
 import { GameComponent } from './game/game.component';
 import { GlanceComponent } from './glance/glance.component';
 import { TableComponent } from './table/table.component';
@@ -15,6 +14,21 @@ import { TermsComponent } from './terms/terms.component';
 import { RulesComponent } from './rules/rules.component';
 import { BoxScoreComponent } from './box-score/box-score.component';
 import { SummaryComponent } from './summary/summary.component';
+
+import { MatchesComponent } from './matches/matches.component';
+
+import { NewmatchComponent } from './newmatch/newmatch.component';
+
+
+import { MatchByIdComponent } from './match-by-id/match-by-id.component';
+import { EditMatchComponent } from './edit-match/edit-match.component';
+
+
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
+
 
 @NgModule({
   declarations: [
@@ -26,7 +40,14 @@ import { SummaryComponent } from './summary/summary.component';
     RulesComponent,
     GameComponent,
     BoxScoreComponent,
-    SummaryComponent
+    SummaryComponent,
+
+    MatchesComponent,
+
+    NewmatchComponent,
+    PageNotFoundComponent,
+    MatchByIdComponent,
+    EditMatchComponent
   ],
 
   imports: [
@@ -34,8 +55,8 @@ import { SummaryComponent } from './summary/summary.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SharedModule,
-    ChatModule,
+
+    SocketIoModule.forRoot(config),
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
