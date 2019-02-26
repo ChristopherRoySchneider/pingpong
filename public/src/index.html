@@ -12,61 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-
-      var socket = io("localhost:1337"); //1
-
-      $('#epicBtn').click(function () {
-        console.log("pushed epic btn")
-        socket.emit('Pushing_epic_button', { msg: "pushed epic btn" })
-      });
-
-
-      $('#resetBtn').click(function () {
-        console.log("pushed reset btn")
-        socket.emit('Pushing_reset_button', { msg: "pushed reset btn" })
-      });
-
-
-      socket.on('greeting', function (data) { //4
-        console.log(data.msg); //5
-
-      });
-      socket.on('updated_message', function (data) { //4
-        console.log(data.msg); //5
-
-
-        $('#msg').replaceWith(`<div id="msg"><p> ${data.msg} </p></div>`);
-      });
-
-      socket.on('updated_count', function (data) { //4
-        console.log(data.numClicks); //5
-
-
-        $('#numClicks').replaceWith(`<span id="numClicks"> ${data.numClicks} </span>`);
-      });
-
-    })
-  </script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-          <div class="col">
-            <h1>Button Game</h1>
-            <h3>The button has been pushed <span id="numClicks">{{numClicks}}</span> times</h3>
-            <div id="msg"></div>
 
-
-            <button class="btn btn-primary btn-lg btn-block" id="epicBtn">Push the Epic Button</button>
-            <button class="mt-2 btn btn-danger btn-lg " id="resetBtn">Reset Count</button>
-
-
-
-          </div>
-        </div>
-      </div>
 
   <app-root></app-root>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

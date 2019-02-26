@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var Pet = mongoose.model('Pet') // We are retrieving this Schema from our Models, named 'tenrec'
-var Rating = mongoose.model('Rating')
+
 module.exports = {
     find_all: function (req, res) {
         Pet.find({}, function (err, pet) {

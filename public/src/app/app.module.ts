@@ -12,8 +12,12 @@ import { NewpetComponent } from './newpet/newpet.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
-import { SharedModule } from './shared/shared.module';
-import { ChatModule } from './chat/chat.module';
+
+
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 
 @NgModule({
   declarations: [
@@ -31,8 +35,8 @@ import { ChatModule } from './chat/chat.module';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SharedModule,
-    ChatModule,
+
+    SocketIoModule.forRoot(config),
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
