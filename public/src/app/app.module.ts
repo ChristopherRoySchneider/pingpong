@@ -10,10 +10,16 @@ import { MatchesComponent } from './matches/matches.component';
 
 import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { MatchByIdComponent } from './match-by-id/match-by-id.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
-import { SharedModule } from './shared/shared.module';
-import { ChatModule } from './chat/chat.module';
+
+
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
+
 
 @NgModule({
   declarations: [
@@ -31,8 +37,8 @@ import { ChatModule } from './chat/chat.module';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SharedModule,
-    ChatModule,
+
+    SocketIoModule.forRoot(config),
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

@@ -36,7 +36,7 @@ module.exports = function () {
             type: String,
             required: [true, 'Name is required.'],
             minlength: [3, "player 1 name needs to be at least 3 characters."],
-            unique: true
+            
         },
         player2: {
             type: String,
