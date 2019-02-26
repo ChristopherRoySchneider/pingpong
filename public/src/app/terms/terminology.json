@@ -1,0 +1,161 @@
+{
+    "meta": {
+        "title": "Table Tennis Terminology",
+        "author": "from www.masatenisi.com"
+    },
+    "terms": {
+        "Backhand": {
+            "definition": "A shot done with the racket to the left of the elbow for a righthander, the reverse for a lefthander."
+        },
+        "Backspin": {
+            "definition": "Backward spin placed on the ball. Also called Underspin."
+        },
+        "Bat": {
+            "definition": "Same as racket."
+        },
+        "Blade": {
+            "definition": "Wooden part of bat."
+        },
+        "Block": {
+            "definition": "A quick, off the bounce return of an aggresive drive done by just holding the racket in the ball's path."
+        },
+        "Chop": {
+            "definition": "A chop is a heavy underspin shot. I it usually executed away from the table and below the tabletop. A chop forces the ball to drop downwards when it hits an opponents paddle."
+        },
+        "Chopper": {
+            "definition": "A style of play where chopping is the primary shot."
+        },
+        "Closed": {
+            "definition": "Holding the racket such that he racket's hitting surface is aimed downward, with the top edge leaning away from you."
+        },
+        "Counter-drive": {
+            "definition": "A drive made against a drive. Some players specialize in counter-driving."
+        },
+        "Cross-court": {
+            "definition": "A ball that is hit diagonally from corner to corner."
+        },
+        "Dead": {
+            "definition": "A ball without any spin."
+        },
+        "Deep": {
+            "definition": "A ball that lands deep on the table. A serve that will not bounce twice on the opponent's side of the table if given the chance is also considered deep."
+        },
+        "Down the line": {
+            "definition": "A ball that is hit along the side of the table, parallel to the sidelines, is hit down the line."
+        },
+        "Drive": {
+            "definition": "The basic topspin shot executed close to the table. Also called a counter, counterdrive, or smash."
+        },
+        "Drop shot": {
+            "definition": "Short placement - very close to the net. A key point in making a drop shot is to not allow the ball to fall off the table after the first bounce. i.e. Drop shots should bounce at least twice on the opponents side of the table before falling off."
+        },
+        "Flat": {
+            "definition": "A ball that has no spin, usually travelling with good pace."
+        },
+        "Flick or flip": {
+            "definition": "A topspin shot generated over the table close to the net, usually with the power generated only from the upper arm or the wrist. Used to start offense on a short ball."
+        },
+        "Footwork": {
+            "definition": "How a person moves to make a shot."
+        },
+        "Forehand": {
+            "definition": "Any shot done with the racket to the right of the elbow for a righthander,  the reverse for a lefthander."
+        },
+        "Game": {
+            "definition": "Set. Each game is played to 11 points unless a deuce occurs."
+        },
+        "Game Point": {
+            "definition": "Last point of a game."
+        },
+        "Hitter": {
+            "definition": "A style of play where hitting is the primary shot."
+        },
+        "Inverted": {
+            "definition": "The most common racket covering. It consists of a sheet of rubber on top of a sponge where pips of the rubber point inward, so the surface is smooth."
+        },
+        "ITTF": {
+            "definition": "International Table Tennis Federation, founded 1926, is the world governing body of the sport, and its members are the table tennis Associations of more than 150 countries."
+        },
+        "Junk": {
+            "definition": "Rubber that produce no spin, such as anti-spin and long-pips."
+        },
+        "Kill": {
+            "definition": "A putaway shot. Ball is hit with enough speed so the opponent can not make a return. "
+        },
+        "Let": {
+            "definition": "Service ball hitting the net or a distraction that causes the point played over."
+        },
+        "Lob": {
+            "definition": "Usually used when the player is in the backcourt in a defensive situation. The player hits the ball as high as he can - usually with a combination of topspin and sidespin. The deeper the ball lands on the table, the more difficult it will be for his opponent to smash."
+        },
+        "Loop": {
+            "definition": "The shot that currently dominates the sport. This is an extreme topspin shot. One the Mazunov brothers (Russia) won a spin competition being 'clocked' at 9000 rpm. A loop, when exectued properly, can curve in the air as a curveball does in baseball. This curve allows the player to hit the ball harder and still rely on the spin of the ball to cause the ball to dive down onto the table. Also, a loop will 'skip' on the table top taking sharp changes in directions. A loop will also tend to 'pop' upwards when it strikes the opponents racket. A loop will also counter heavy spin (topspin or underspin) from an opponent. It can be executed above or below the tabletop, close or far away from the table."
+        },
+        "Looper": {
+            "definition": "A style of play where the primary shot is the loop."
+        },
+        "Open": {
+            "definition": "Holding the racket such that he racket's hitting surface is aimed upward, with the top edge leaning towards you."
+        },
+        "Paddle": {
+            "definition": "Same as racket."
+        },
+        "Penholder": {
+            "definition": "A type of grip giving the best possible forehand but the most awkward backhand of the conventional grips."
+        },
+        "Pips": {
+            "definition": "The small conical bits of rubber that cover a sheet of table tennis rubber."
+        },
+        "Pips out": {
+            "definition": "A type of racket covering. It consists of a sheet of pips out rubber on top of a layer of sponge. The pips point outward,  the opposite of inverted."
+        },
+        "Point": {
+            "definition": "A unit of scoring in table tennis."
+        },
+        "Push": {
+            "definition": "A push is an underspin shot executed over the table, and usually close to the net. This is a passive shot that is used when it is impossible to attack a ball."
+        },
+        "Racket": {
+            "definition": "Same as bat."
+        },
+        "Rally": {
+            "definition": "The period in which the ball is in play."
+        },
+        "Rating": {
+            "definition": "A number that is asigned to players after their first tournament. The better  the player the higher the rating should be."
+        },
+        "Receive": {
+            "definition": "The return of a serve."
+        },
+        "Serve": {
+            "definition": "The first shot, done by the server. It begins with the ball being thrown up from palm of hand and struck by the racket."
+        },
+        "Shakehand": {
+            "definition": "The most popular grip. It gives the best balance of forehand and backhand."
+        },
+        "Sidespin": {
+            "definition": "Spin placed on a ball to allow it to curve left or right in the air. Usually utilized in combination with the topspin of a loop."
+        },
+        "Smash": {
+            "definition": "A putaway shot. Ball is hit with enough speed so the opponent can not make a return."
+        },
+        "Spin": {
+            "definition": "The rotation of a ball. Topspin: Spin placed on a ball to allow it to curve down onto the table."
+        },
+        "Stroke": {
+            "definition": "Any shot used in the game, including the serve."
+        },
+        "Topspin": {
+            "definition": "Spin placed on a ball to allow it to curve down onto the table."
+        },
+        "Twiddle": {
+            "definition": "Same as twirl."
+        },
+        "Twirl": {
+            "definition": "Turning of the paddle, used for confusing opponents on which side of the paddle is being used. Not as deceptive now due to the two color law, namely black on one side and bright red on the other side. Usually utilized with combination bat."
+        },
+        "Umpire or Referee": {
+            "definition": "An official who keeps score and enforces rules during a match."
+        }
+    }
+}
