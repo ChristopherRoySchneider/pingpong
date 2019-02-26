@@ -1,4 +1,6 @@
 .summary {
     font-size: 11pt;
     font-family: 'Inconsolata', monospace;
+    max-height: 200px;
+    overflow: auto;
 }
