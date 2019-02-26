@@ -31,6 +31,23 @@ module.exports = {
             
         })
     },
+    add_game: function (req, res) {
+        // console.log("POST DATA", req.body);
+        Match.findOne({ _id: req.params.matchid }, function (err, match) {
+            var newGame = new Game()
+            match.games.push(newGame)
+            console.log("!!!!!!!!!!!!!!",req.params)
+            match.save(function (err) {
+                if (err) {
+                    console.log('Post Errors:', err.errors);
+                    res.json({ message: "Error", error: err })
+                } else { // else console.log that we did well and then redirect to the root route
+                    console.log('successfully added a game!');
+                    res.json({ message: "Success",  })
+                }
+            })
+        })
+    },
     get_by_id: function (req, res) {
         Match.find({_id:req.params.matchid}, function (err, p_by_name) {
             if (err) {

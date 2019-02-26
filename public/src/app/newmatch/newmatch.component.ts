@@ -9,6 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class NewmatchComponent implements OnInit {
   newMatch = {};
+  newGame = {};
   errors = null;
   constructor(
     private _httpService: HttpService,
@@ -39,4 +40,5 @@ export class NewmatchComponent implements OnInit {
       }
     });
   }
+
 }

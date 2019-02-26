@@ -24,10 +24,8 @@ module.exports = function (app) {
     })
 
     app.post('/matches/:matchid/games', function (req, res) {
-        matches.new_game(req, res);
+        matches.add_game(req, res);
     })
-
-    
 
     app.post('/matches/:matchid/games/:gameid/gameevents', function (req, res) {
         matches.new_game_event(req, res);

@@ -13,11 +13,11 @@
       Adopt
     </button>
 
-    <button *ngIf="!likedThisMatch"
+    <button 
       class="ml-2 btn btn-primary"
-      (click)="likeMatch(match['_id'])"
+      (click)="addGame(match['_id'])"
     >
-      Like
+      Add Game
     </button>
 
   </div>
