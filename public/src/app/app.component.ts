@@ -68,23 +68,6 @@ export class AppComponent implements OnInit {
       this.getMatchesFromService();
     });
   }
-  onSubmitRating( newRating, matchId) {
-    console.log("*newRating",newRating);
-    console.log("*matchId",matchId);
-
-    let observable = this._httpService.addRating(matchId,newRating);
-    observable.subscribe(data => {
-      console.log('put ', data);
-
-      this.newRating = { };
-      this.showMatchEditFormId=null;
-      this.getMatchesFromService();
-      this.getMatchByIdFromService(matchId);
-
-
-    });
-  }
-
 
   deleteMatch(id: string): void {
     let observable = this._httpService.deleteMatch(id);

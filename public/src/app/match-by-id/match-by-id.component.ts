@@ -43,7 +43,7 @@ errors=[];
         this.errors = data['error'];
         console.log(this.errors);
       } else {
-        this._router.navigate(['/']);
+        // this._router.navigate(['/']);
         this.errors = null;
       }
     });

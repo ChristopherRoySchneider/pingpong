@@ -19,13 +19,15 @@ module.exports = {
         var newMatch = new Match();
         newMatch.player1 = req.body.player1;
         newMatch.player2 = req.body.player2; 
-        newMatch.games = [new Game()];
+        
         newMatch.save(function (err) {
             if (err) {
                 console.log('error saving new user: ',err);
+                
                 res.json({ message: "Error", error: err })
             } else { // else console.log that we did well and then redirect to the root route
                 console.log('new match:', newMatch);
+                
                 res.json({ message: "Success", data: newMatch })
             }
             
@@ -35,6 +37,10 @@ module.exports = {
         // console.log("POST DATA", req.body);
         Match.findOne({ _id: req.params.matchid }, function (err, match) {
             var newGame = new Game()
+            
+            var first_game_event = new GameEvent()
+            first_game_event.type = "game_start"
+            newGame.game_events.push(first_game_event)
             match.games.push(newGame)
             console.log("!!!!!!!!!!!!!!",req.params)
             match.save(function (err) {

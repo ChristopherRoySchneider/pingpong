@@ -15,7 +15,7 @@ export class MatchesComponent implements OnInit {
   showMatchEditFormId = null;
   matches = [];
   matchToEdit = {};
-  newRating = {};
+  newGame = {};
   sortAscending = true;
   sortField = "_id";
   constructor(private _httpService: HttpService) {}
