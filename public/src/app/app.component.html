@@ -11,9 +11,28 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="/new">New<span class="sr-only">(current)</span></a>
+
         </li>
       </ul>
     </div>
   </nav>
+
+    <div class="row">
+      <div class="col">
+        <h1>Button Game</h1>
+        <h3>The button has been pushed <span id="numClicks">{{numClicks}}</span> times</h3>
+        <div id="msg"></div>
+
+
+        <button class="btn btn-primary btn-lg btn-block" id="epicBtn">Push the Epic Button</button>
+        <button class="btn btn-primary btn-lg btn-block" id="epicBtn2">Push the Epic Button 2</button>
+        <button class="mt-2 btn btn-danger btn-lg " id="resetBtn">Reset Count</button>
+
+
+
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block"  (click)=onButtonClickTestSocket()>test</button>
   <router-outlet></router-outlet>
+
 </div>
