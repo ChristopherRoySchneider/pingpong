@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+    <p>Player 1: {{match['player1']}}</p>
+    <p>Player 2: {{match['player2']}}</p>
+    
+  
+    <a class="ml-2 btn btn-primary" href="/edit/{{match['_id']}}">Edit</a>
+
+    <button
+      class="ml-2 btn btn-primary"
+      (click)="deleteMatch(match['_id'])"
+    >
+      Adopt
+    </button>
+
+    <button *ngIf="!likedThisMatch"
+      class="ml-2 btn btn-primary"
+      (click)="likeMatch(match['_id'])"
+    >
+      Like
+    </button>
+
+  </div>
+</div>

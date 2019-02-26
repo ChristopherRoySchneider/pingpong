@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { PetsComponent } from './pets/pets.component';
+import { MatchsComponent } from './matchs/matchs.component';
 
-import { NewpetComponent } from './newpet/newpet.component';
+import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
-import { EditPetComponent } from './edit-pet/edit-pet.component';
+import { MatchByIdComponent } from './match-by-id/match-by-id.component';
+import { EditMatchComponent } from './edit-match/edit-match.component';
 import { SharedModule } from './shared/shared.module';
 import { ChatModule } from './chat/chat.module';
 
@@ -19,12 +19,12 @@ import { ChatModule } from './chat/chat.module';
   declarations: [
     AppComponent,
 
-    PetsComponent,
+    MatchsComponent,
 
-    NewpetComponent,
+    NewmatchComponent,
     PageNotFoundComponent,
-    PetByIdComponent,
-    EditPetComponent
+    MatchByIdComponent,
+    EditMatchComponent
   ],
   imports: [
     BrowserModule,

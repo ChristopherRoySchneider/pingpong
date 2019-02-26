@@ -8,31 +8,31 @@ export class HttpService {
   constructor(private _http: HttpClient) {
 
   }
-  getPets() {
+  getMatchs() {
 
-    return this._http.get('/pets');
+    return this._http.get('/matchs');
       }
-  getPetById(id = '5c69e4472cc64c61b0628c5b') {
+  getMatchById(id = '5c69e4472cc64c61b0628c5b') {
     // our http response is an Observable, store it in a variable
-    return this._http.get('/pets/' + id);
+    return this._http.get('/matchs/' + id);
     // subscribe to the Observable and provide the code we would like to do with our data from the response
-    // tempObservable.subscribe(data => console.log('Got our pet by id!', data));
+    // tempObservable.subscribe(data => console.log('Got our match by id!', data));
   }
 
 
-  addPet(newpet) {
-    return this._http.post('/pets', newpet);
+  addMatch(newmatch) {
+    return this._http.post('/matchs', newmatch);
   }
-  deletePet(id) {
-    return this._http.delete(`/pets/${id}`);
+  deleteMatch(id) {
+    return this._http.delete(`/matchs/${id}`);
   }
-  putPet(updatedPet) {
-    return this._http.put(`/pets/${updatedPet._id}`,updatedPet);
+  putMatch(updatedMatch) {
+    return this._http.put(`/matchs/${updatedMatch._id}`,updatedMatch);
   }
   addRating(id,newrating) {
-    return this._http.post(`/pets/${id}/ratings`, newrating);
+    return this._http.post(`/matchs/${id}/ratings`, newrating);
   }
-  likePet(id) {
-    return this._http.get(`/pets/${id}/like`, );
+  likeMatch(id) {
+    return this._http.get(`/matchs/${id}/like`, );
   }
 }
