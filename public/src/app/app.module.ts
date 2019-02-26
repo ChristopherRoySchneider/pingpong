@@ -5,11 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { GameComponent } from './game/game.component';
+import { GlanceComponent } from './glance/glance.component';
+import { TableComponent } from './table/table.component';
+import { TermsComponent } from './terms/terms.component';
+import { RulesComponent } from './rules/rules.component';
+import { BoxScoreComponent } from './box-score/box-score.component';
+import { SummaryComponent } from './summary/summary.component';
 
 import { MatchesComponent } from './matches/matches.component';
 
 import { NewmatchComponent } from './newmatch/newmatch.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 import { MatchByIdComponent } from './match-by-id/match-by-id.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
@@ -24,6 +33,14 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
+    TableComponent,
+    GlanceComponent,
+    TermsComponent,
+    RulesComponent,
+    GameComponent,
+    BoxScoreComponent,
+    SummaryComponent,
 
     MatchesComponent,
 
@@ -32,6 +49,7 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
     MatchByIdComponent,
     EditMatchComponent
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -43,4 +61,5 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
   providers: [HttpService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
