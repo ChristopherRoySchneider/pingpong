@@ -1,6 +1,8 @@
 <div class="my-3 d-flex justify-content-center">
-  <div id="drawing" class="shadow" (click)="newGameEvent($event)"></div>
+  <div id="drawing" class="shadow" (click)="newMatchGameEvent($event)"></div>
 </div>
+{{ matchGameEvent | json }}
 <div class="bg-white p-3 my-3 rounded box-score">
-
+  <button class="btn btn-primary">Backhand</button>
+  <button class="btn btn-primary">Block</button>
 </div>
