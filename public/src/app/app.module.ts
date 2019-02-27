@@ -26,6 +26,7 @@ import { EditMatchComponent } from './edit-match/edit-match.component';
 
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { GamecasterComponent } from './gamecaster/gamecaster.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 
@@ -47,7 +48,8 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
     NewmatchComponent,
     PageNotFoundComponent,
     MatchByIdComponent,
-    EditMatchComponent
+    EditMatchComponent,
+    GamecasterComponent
   ],
 
   imports: [
