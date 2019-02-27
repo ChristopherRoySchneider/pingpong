@@ -19,8 +19,8 @@ export class EditMatchComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      console.log(params["id"]);
-      this.matchID = params["id"];
+      console.log(params["matchid"]);
+      this.matchID = params["matchid"];
       this.getMatchByIdFromService(this.matchID);
     });
   }

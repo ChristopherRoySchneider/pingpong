@@ -9,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
+import { GameByIdComponent } from './game-by-id/game-by-id.component';
 const routes: Routes = [
   { path: 'watch', component: WatchComponent },
   { path: 'cast', component: GamecasterComponent },
@@ -17,13 +18,14 @@ const routes: Routes = [
   { path: 'home',component: MatchesComponent },
   { path: 'new',component: NewmatchComponent },
   // use a colon and parameter name to include a parameter in the url
-  { path: 'edit/:id', component: EditMatchComponent },
-  { path: 'view/:id', component: MatchByIdComponent },
+  { path: 'edit/:matchid', component: EditMatchComponent },
+  { path: 'view/:matchid', component: MatchByIdComponent },
+  { path: 'view/:matchid/games/:gameid', component: GameByIdComponent },
   // redirect to /alpha if there is nothing in the url
   { path: '', pathMatch: 'full', redirectTo:"/home" },
   // the ** will catch anything that did not match any of the above routes
   { path: '**', component: PageNotFoundComponent },
-  
+
 ];
 
 @NgModule({

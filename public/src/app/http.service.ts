@@ -18,6 +18,12 @@ export class HttpService {
     // subscribe to the Observable and provide the code we would like to do with our data from the response
     // tempObservable.subscribe(data => console.log('Got our match by id!', data));
   }
+  getGameById(matchid = '5c69e4472cc64c61b0628c5b',gameid: string) {
+    // our http response is an Observable, store it in a variable
+    return this._http.get(`/matches/${matchid}/games/${gameid}`);
+    // subscribe to the Observable and provide the code we would like to do with our data from the response
+    // tempObservable.subscribe(data => console.log('Got our match by id!', data));
+  }
 
 
   addMatch(newmatch) {
@@ -32,7 +38,11 @@ export class HttpService {
   addGame(id,newgame) {
     return this._http.post(`/matches/${id}/games`, newgame);
   }
-  likeMatch(id) {
-    return this._http.get(`/matches/${id}/like`, );
+
+  putGame(matchid,updatedGame) {
+    return this._http.put(`/matches/${matchid}/games/${updatedGame._id}`,updatedGame);
+  }
+  postGameEvent(matchid,gameid,gamevent) {
+    return this._http.post(`/matches/${matchid}/games/${gameid}/gameevents`,gamevent);
   }
 }

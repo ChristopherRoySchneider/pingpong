@@ -17,9 +17,13 @@ import { NewmatchComponent } from './newmatch/newmatch.component';
 import { MatchByIdComponent } from './match-by-id/match-by-id.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+import { GameByIdComponent } from './game-by-id/game-by-id.component';
+
 import { GamecasterComponent } from './gamecaster/gamecaster.component';
 import { WatchComponent } from './watch/watch.component';
 import { GctableComponent } from './gctable/gctable.component';
+
 
 const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 
@@ -39,9 +43,13 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
     PageNotFoundComponent,
     MatchByIdComponent,
     EditMatchComponent,
+
+    GameByIdComponent,
+
     GamecasterComponent,
     WatchComponent,
     GctableComponent
+
   ],
 
   imports: [
