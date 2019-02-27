@@ -38,7 +38,11 @@ export class HttpService {
   addGame(id,newgame) {
     return this._http.post(`/matches/${id}/games`, newgame);
   }
-  likeMatch(id) {
-    return this._http.get(`/matches/${id}/like`, );
+
+  putGame(matchid,updatedGame) {
+    return this._http.put(`/matches/${matchid}/games/${updatedGame._id}`,updatedGame);
+  }
+  postGameEvent(matchid,gameid,gamevent) {
+    return this._http.post(`/matches/${matchid}/games/${gameid}/gameevents`,gamevent);
   }
 }

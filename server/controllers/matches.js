@@ -90,6 +90,8 @@ module.exports = {
     Match.findOne({ _id: req.params.matchid }, function(err, match) {
       match.player1 = req.body.player1;
       match.player2 = req.body.player2;
+      match.winner = req.body.winner;
+      match.match_complete = req.body.match_complete;
       match.save(function(err) {
         if (err) {
           console.log("Post Errors:", err.errors);
@@ -116,21 +118,72 @@ module.exports = {
     });
   },
 
-  like: function(req, res) {
-    // console.log("POST DATA", req.body);
-    Match.findOne({ _id: req.params.matchid }, function(err, match) {
-      match.likes += 1;
-
+  update_game: function(req, res) {
+    console.log("POST DATA", req.body, req.params);
+    Match.findOne({ _id: req.params.matchid }, function(finderr, match) {
+      console.log("in update_game",match)
+      if (finderr) {
+        console.log("Post Errors:", finderr.errors);
+        res.json({ message: "Error", finderr: err });
+      }
+        match['games'].forEach(game => {
+            if (game._id == req.params.gameid) {
+              game.winner = req.body.winner;
+              game.game_complete = req.body.game_complete;
+            }})
       match.save(function(err) {
         if (err) {
           console.log("Post Errors:", err.errors);
           res.json({ message: "Error", error: err });
         } else {
           // else console.log that we did well and then redirect to the root route
-          console.log("successfully liked a match!");
+          console.log("successfully added a match!");
           res.json({ message: "Success" });
         }
       });
     });
-  }
+  },
+
+
+// update_game: function(req, res) {
+//     console.log("POST DATA", req.body, req.params);
+//     Match.findOne({ _id: req.params.matchid }, function(err, match) {
+      
+//       match.save(function(err) {
+//         if (err) {
+//           console.log("Post Errors:", err.errors);
+//           res.json({ message: "Error", error: err });
+//         } else {
+//           // else console.log that we did well and then redirect to the root route
+//           console.log("successfully updated a match!");
+//           res.json({ message: "Success" });
+//         }
+//       });
+//     });
+//   },
+new_game_event: function(req, res) {
+    console.log("POST DATA", req.body, req.params);
+    Match.findOne({ _id: req.params.matchid }, function(finderr, match) {
+      console.log("in update_game",match)
+      if (finderr) {
+        console.log("Post Errors:", finderr.errors);
+        res.json({ message: "Error", finderr: err });
+      }
+        match['games'].forEach(game => {
+            if (game._id == req.params.gameid) {
+              game.game_events.push(req.body);
+            }})
+      match.save(function(err) {
+        if (err) {
+          console.log("Post Errors:", err.errors);
+          res.json({ message: "Error", error: err });
+        } else {
+          // else console.log that we did well and then redirect to the root route
+          console.log("successfully added a game event!");
+          res.json({ message: "Success" });
+        }
+      });
+    });
+  },
+  
 };

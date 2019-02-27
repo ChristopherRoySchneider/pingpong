@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { SocketService } from '../socket.service';
@@ -9,6 +9,9 @@ import { SocketService } from '../socket.service';
   styleUrls: ['./game-by-id.component.css']
 })
 export class GameByIdComponent implements OnInit {
+  @Input() gameFromInput:any;
+  @Input() matchFromInput:any;
+
   matchId=null;
   gameId=null;
   match={};
@@ -53,9 +56,20 @@ export class GameByIdComponent implements OnInit {
       console.log('this.matchToEdit', this.match);
     });
   }
-  putGameEvent(newgameevent){
+  putGameEvent(matchid, gameid,newgameevent){
     console.log("button pushed, sending:",newgameevent)
-    this._SocketService.sendGameEvent(newgameevent);
+    let observable = this._httpService.postGameEvent(matchid, gameid,newgameevent);
+    observable.subscribe(data => {
+      console.log("put game event", data);
+
+      if (data['message'] == 'Error') {
+        console.log('Error saving Match', data);
+
+      } else {
+        this._SocketService.sendGameEvent(newgameevent);
+      }
+    });
+
 
   }
 }

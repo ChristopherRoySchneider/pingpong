@@ -56,12 +56,5 @@ errors=[];
       this._router.navigate(['/']);
     });
   }
-  likeMatch(id: string): void {
-    let observable = this._httpService.likeMatch(id);
-    observable.subscribe(data => {
-      console.log("liked match with id: ",id, data);
-      this.likedThisMatch=true;
-      this.getMatchByIdFromService(id)
-    });
-  }
+
 }

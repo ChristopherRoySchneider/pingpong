@@ -33,6 +33,9 @@ module.exports = function (app) {
     app.get('/matches/:matchid/games/:gameid', function (req, res) {
         matches.get_game_by_id(req, res);
     })
+    app.put('/matches/:matchid/games/:gameid', function (req, res) {
+        matches.update_game(req, res);
+    })
 
   
 
