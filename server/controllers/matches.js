@@ -2,6 +2,22 @@ var mongoose = require("mongoose");
 var Match = mongoose.model("Match"); // We are retrieving this Schema from our Models, named 'tenrec'
 var Game = mongoose.model("Game");
 var GameEvent = mongoose.model("GameEvent");
+
+function initializeGame(){
+  var newGame = new Game();
+
+      var first_game_event = new GameEvent();
+      first_game_event.type = "game_start";
+      newGame.game_events.push(first_game_event);
+      return newGame
+}
+
+function initializeMatch(){
+  var newMatch = new Match();
+      var newGame = initializeGame()
+      newMatch.games.push(newGame);
+      return newMatch;
+}
 module.exports = {
   find_all: function(req, res) {
     Match.find({}, function(err, match) {
@@ -17,7 +33,8 @@ module.exports = {
   },
   new: function(req, res) {
     // console.log(req)
-    var newMatch = new Match();
+    var newMatch = initializeMatch();
+
     newMatch.player1 = req.body.player1;
     newMatch.player2 = req.body.player2;
 
@@ -37,11 +54,7 @@ module.exports = {
   add_game: function(req, res) {
     // console.log("POST DATA", req.body);
     Match.findOne({ _id: req.params.matchid }, function(err, match) {
-      var newGame = new Game();
-
-      var first_game_event = new GameEvent();
-      first_game_event.type = "game_start";
-      newGame.game_events.push(first_game_event);
+      var newGame = initializeGame();
       match.games.push(newGame);
       console.log("!!!!!!!!!!!!!!", req.params);
       match.save(function(err) {
