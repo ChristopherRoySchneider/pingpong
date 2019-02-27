@@ -30,6 +30,12 @@ module.exports = function (app) {
     app.post('/matches/:matchid/games/:gameid/gameevents', function (req, res) {
         matches.new_game_event(req, res);
     })
+    app.get('/matches/:matchid/games/:gameid', function (req, res) {
+        matches.get_game_by_id(req, res);
+    })
+    app.put('/matches/:matchid/games/:gameid', function (req, res) {
+        matches.update_game(req, res);
+    })
 
   
 

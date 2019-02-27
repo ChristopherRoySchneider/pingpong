@@ -17,12 +17,22 @@ export class SocketService {
     pushEpicButton(msg: string){
       this.socket.emit("Pushing_epic_button", msg);
   }
+  sendGameEvent(msg){
+    console.log("emitting :",msg )
+    this.socket.emit("new_game_event", msg);
+}
      getMessage() {
         console.log("getting here")
         return this.socket
             .fromEvent("message").pipe(
             map( data => data['msg'] ));
     }
+    subscribeGameEvent() {
+      console.log("subscribeGameEvent here")
+      return this.socket
+          .fromEvent("new_game_event").pipe(
+          map( data => data ));
+  }
 
     countUpdated() {
       console.log("epic button pushed")
