@@ -13,7 +13,7 @@ import { GameByIdComponent } from './game-by-id/game-by-id.component';
 import { CastComponent } from './cast/cast.component';
 const routes: Routes = [
   { path: 'watch', component: WatchComponent },
-  { path: 'gamecast', component: GamecasterComponent },
+  { path: 'gamecast/:matchid', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'home',component: MatchesComponent },
