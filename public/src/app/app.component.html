@@ -1,12 +1,15 @@
 <!-- navbar begin -->
 <nav class="navbar navbar-expand-sm text-white">
-  <p class="navbar-brand mb-0" href="/">DOJO-PONGCAST</p>
+  <a class="navbar-brand mb-0" href="/">DOJO-PONGCAST</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+            <a class="nav-link" href="/new">Add Match</a>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="/terms">Terminology</a>
       </li>
@@ -17,7 +20,8 @@
   </div>
 </nav>
   <!-- navbar end -->
-      
+    
+  
 <div class="container d-flex justify-content-center">
   <router-outlet></router-outlet>
 </div>

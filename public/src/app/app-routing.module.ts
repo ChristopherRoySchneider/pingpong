@@ -1,10 +1,9 @@
-
-import { GameComponent } from './game/game.component';
 import { TermsComponent } from './terms/terms.component';
 import { RulesComponent } from './rules/rules.component';
 import { MatchByIdComponent } from './match-by-id/match-by-id.component';
 import { MatchesComponent } from './matches/matches.component';
-
+import { WatchComponent } from './watch/watch.component';
+import { GamecasterComponent } from './gamecaster/gamecaster.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NewmatchComponent } from './newmatch/newmatch.component';
@@ -12,7 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EditMatchComponent } from './edit-match/edit-match.component';
 import { GameByIdComponent } from './game-by-id/game-by-id.component';
 const routes: Routes = [
-  { path: 'game', component: GameComponent },
+  { path: 'watch', component: WatchComponent },
+  { path: 'cast', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'home',component: MatchesComponent },

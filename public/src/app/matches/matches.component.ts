@@ -35,27 +35,27 @@ export class MatchesComponent implements OnInit {
       var temp = data["data"];
       console.log(typeof temp);
       console.log(JSON.stringify(temp));
-      // if (this.sortAscending) {
-      //   if (this.sortField == "_id") {
-      //     temp = temp.sort((a, b) => (a._id < b._id ? -1 : 1));
-      //   }
+      if (this.sortAscending) {
+        if (this.sortField == "_id") {
+          temp = temp.sort((a, b) => (a._id < b._id ? -1 : 1));
+        }
       //   if (this.sortField == "name") {
       //     temp = temp.sort((a, b) => (a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1));
       //   }
       //   if (this.sortField == "type") {
       //     temp = temp.sort((a, b) => (a.type.toUpperCase() < b.type.toUpperCase() ? -1 : 1));
       //   }
-      // } else {
-      //   if (this.sortField == "_id") {
-      //     temp = temp.sort((a, b) => (a._id > b._id ? -1 : 1));
-      //   }
+      } else {
+        if (this.sortField == "_id") {
+          temp = temp.sort((a, b) => (a._id > b._id ? -1 : 1));
+        }
       //   if (this.sortField == "name") {
       //     temp = temp.sort((a, b) => (a.name.toUpperCase() > b.name.toUpperCase() ? -1 : 1));
       //   }
       //   if (this.sortField == "type") {
       //     temp = temp.sort((a, b) => (a.type.toUpperCase() > b.type.toUpperCase() ? -1 : 1));
       //   }
-      // }
+      }
       console.log(temp);
       this.matches = temp;
       console.log("this.matches", this.matches);
