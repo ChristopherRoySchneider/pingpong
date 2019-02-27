@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import SVG from 'svg.js';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-gctable',
+  templateUrl: './gctable.component.html',
+  styleUrls: ['./gctable.component.css']
 })
-export class TableComponent implements OnInit {
+export class GctableComponent implements OnInit {
 
   constructor() { }
 
@@ -41,17 +41,20 @@ export class TableComponent implements OnInit {
     })
   }
 
-  drawBall(event: MouseEvent) {
+  newGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
     this.clientX = event.clientX - this.parent.left;
     this.clientY = event.clientY - this.parent.top;
-    console.log(this.clientX, this.clientY);
     this.ball = this.draw.circle(10).attr({
       cx: this.clientX,
       cy: this.clientY,
       fill: '#fff'
     });
+  }
+
+  determineScorer(x: number) {
+
   }
 
 }
