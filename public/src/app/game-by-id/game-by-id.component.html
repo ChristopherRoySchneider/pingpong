@@ -1,0 +1,49 @@
+<p>
+  game-by-id works!
+
+</p>
+<p>{{game | json}}</p>
+<p *ngFor="let game_event of game['game_events']">
+  {{game_event | json}}
+</p>
+<form (submit)="putGameEvent(newGameEvent)">
+  <div class="form-group">
+    <label for="newGameEvent.p1_points_scored">Player1 Points Scored</label>
+    <input
+      class="form-control"
+      type="text"
+      id="newGameEvent.p1_points_scored"
+      name="newGameEvent.p1_points_scored"
+      [(ngModel)]="newGameEvent['p1_points_scored']"
+      autofocus
+    />
+  </div>
+  <div class="form-group">
+    <label for="newGameEvent.p2_points_scored">Player2 Points Scored</label>
+    <input
+      class="form-control"
+      type="text"
+      id="newGameEvent.p2_points_scored"
+      name="newGameEvent.p2_points_scored"
+      [(ngModel)]="newGameEvent['p2_points_scored']"
+
+    />
+  </div>
+  <div class="form-group">
+    <label for="newGameEvent.type">type</label>
+    <input
+      class="form-control"
+      type="text"
+      id="newGameEvent.type"
+      name="newGameEvent.type"
+      [(ngModel)]="newGameEvent['type']"
+
+    />
+  </div>
+
+
+<input class="btn btn-primary" type="submit" value="Add Game Event" />
+
+
+</form>
+<p>{{newGameEvent | json}}</p>

@@ -18,6 +18,12 @@ export class HttpService {
     // subscribe to the Observable and provide the code we would like to do with our data from the response
     // tempObservable.subscribe(data => console.log('Got our match by id!', data));
   }
+  getGameById(matchid = '5c69e4472cc64c61b0628c5b',gameid: string) {
+    // our http response is an Observable, store it in a variable
+    return this._http.get(`/matches/${matchid}/games/${gameid}`);
+    // subscribe to the Observable and provide the code we would like to do with our data from the response
+    // tempObservable.subscribe(data => console.log('Got our match by id!', data));
+  }
 
 
   addMatch(newmatch) {

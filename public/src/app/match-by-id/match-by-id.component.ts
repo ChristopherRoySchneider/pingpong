@@ -18,9 +18,9 @@ errors=[];
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      console.log(params["id"]);
-      this.matchId = params['id']
-      this.getMatchByIdFromService(params["id"]);
+      console.log(params["matchid"]);
+      this.matchId = params['matchid']
+      this.getMatchByIdFromService(params["matchid"]);
     });
   }
 

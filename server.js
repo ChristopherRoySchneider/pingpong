@@ -62,6 +62,12 @@ io.on('connection', function (socket) { //2
         io.emit('updated_count', { numClicks: numClicks });
     });
 
+    socket.on('new_game_event', function (data) {
+        
+        console.log("heard new game event: ", data); //8 (note: this log will be on your server's terminal)
+        io.emit('new_game_event', data);
+    });
+
     socket.on('Pushing_reset_button', function (data) {
         numClicks = 0
         console.log("numClicks: ", numClicks); //8 (note: this log will be on your server's terminal)
