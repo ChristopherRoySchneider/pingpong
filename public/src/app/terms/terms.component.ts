@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as terms from './terminology.json';
 
 @Component({
   selector: 'app-terms',
