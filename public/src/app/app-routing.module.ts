@@ -10,13 +10,15 @@ import { NewmatchComponent } from './newmatch/newmatch.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditMatchComponent } from './edit-match/edit-match.component';
 import { GameByIdComponent } from './game-by-id/game-by-id.component';
+import { CastComponent } from './cast/cast.component';
 const routes: Routes = [
   { path: 'watch', component: WatchComponent },
-  { path: 'cast', component: GamecasterComponent },
+  { path: 'gamecast', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'home',component: MatchesComponent },
   { path: 'new',component: NewmatchComponent },
+  { path: 'cast',component: CastComponent },
   // use a colon and parameter name to include a parameter in the url
   { path: 'edit/:matchid', component: EditMatchComponent },
   { path: 'view/:matchid', component: MatchByIdComponent },

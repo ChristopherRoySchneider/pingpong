@@ -23,6 +23,7 @@ import { GameByIdComponent } from './game-by-id/game-by-id.component';
 import { GamecasterComponent } from './gamecaster/gamecaster.component';
 import { WatchComponent } from './watch/watch.component';
 import { GctableComponent } from './gctable/gctable.component';
+import { CastComponent } from './cast/cast.component';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
@@ -48,7 +49,8 @@ const config: SocketIoConfig = { url: 'http://localhost:1337', options: {} };
 
     GamecasterComponent,
     WatchComponent,
-    GctableComponent
+    GctableComponent,
+    CastComponent
 
   ],
 
