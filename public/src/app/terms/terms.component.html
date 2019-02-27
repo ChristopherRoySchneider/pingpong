@@ -1,3 +1,5 @@
-<p>
-  terms works!
+<h3>Terminology</h3>
+<p *ngFor="let term of termsArr">
+  <b>{{term.term}}</b>:
+  {{term.definition}}
 </p>
