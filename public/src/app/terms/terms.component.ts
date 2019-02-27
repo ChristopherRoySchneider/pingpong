@@ -9,8 +9,20 @@ import * as terms from './terminology.json';
 export class TermsComponent implements OnInit {
 
   constructor() { }
+  termsArr =[]
+  terms: any = terms['terms']
 
   ngOnInit() {
+    for(var key in this.terms){
+      let obj = {
+        term: key,
+        definition: this.terms[key].definition
+      }
+      this.termsArr.push(obj)
+    }
   }
 
 }
+
+
+
