@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import SVG from 'svg.js';
 
@@ -18,6 +18,7 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
+  @Input() match: any;
   matchGameEvent: any = {
     player1: '',
     player2: '',
@@ -76,7 +77,4 @@ export class GctableComponent implements OnInit {
       return this.matchGameEvent.player2;
     }
   }
-
-  
-
 }

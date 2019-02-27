@@ -1,6 +1,7 @@
 <div class="game">
-  <app-glance></app-glance>
-  <app-gctable></app-gctable>
+  {{ match | json }}
+  <app-glance [match]="match"  ></app-glance>
+  <app-gctable [match]="match"></app-gctable>
   <app-box-score></app-box-score>
   <app-summary></app-summary>
 </div>
