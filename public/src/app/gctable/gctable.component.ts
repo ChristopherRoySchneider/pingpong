@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
 import SVG from 'svg.js';
 
 @Component({
@@ -8,10 +9,8 @@ import SVG from 'svg.js';
 })
 export class GctableComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _http: HttpService ) { }
 
-  clientX = 0;
-  clientY = 0;
   draw: any;
   table: any;
   centerLine: any;
@@ -19,6 +18,20 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
+  matchGameEvent: any = {
+    player1: '',
+    player2: '',
+    matchWinner: '',
+    match_complete: false,
+    game_complete: false,
+    gameWinner: '',
+    p1_points_scored: 0,
+    scorer: '',
+    p2_points_scored: 0,
+    type: '',
+    x: 0,
+    y: 0
+  }
 
   ngOnInit() {
     this.makeTable();
@@ -41,20 +54,29 @@ export class GctableComponent implements OnInit {
     })
   }
 
-  newGameEvent(event: MouseEvent) {
+  newMatchGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
-    this.clientX = event.clientX - this.parent.left;
-    this.clientY = event.clientY - this.parent.top;
+    this.matchGameEvent.x = event.clientX - this.parent.left;
+    this.matchGameEvent.y = event.clientY - this.parent.top;
+    this.matchGameEvent.scorer = this.determineScorer(this.matchGameEvent.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.clientX,
-      cy: this.clientY,
+      cx: this.matchGameEvent.x,
+      cy: this.matchGameEvent.y,
       fill: '#fff'
     });
   }
 
-  determineScorer(x: number) {
-
+  determineScorer(x: number): string {
+    if (x < 178){
+      this.matchGameEvent.p1_points_scored++;
+      return this.matchGameEvent.player1;
+    } else {
+      this.matchGameEvent.p2_points_scored++;
+      return this.matchGameEvent.player2;
+    }
   }
+
+  
 
 }
