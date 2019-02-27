@@ -17,7 +17,7 @@ export class SocketService {
     pushEpicButton(msg: string){
       this.socket.emit("Pushing_epic_button", msg);
   }
-  sendGameEvent(msg: string){
+  sendGameEvent(msg){
     console.log("emitting :",msg )
     this.socket.emit("new_game_event", msg);
 }
