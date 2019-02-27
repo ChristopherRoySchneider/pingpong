@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EditMatchComponent } from './edit-match/edit-match.component';
 const routes: Routes = [
   { path: 'watch', component: WatchComponent },
-  { path: 'cast', component: GamecasterComponent },
+  { path: 'cast/:id', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'home',component: MatchesComponent },
