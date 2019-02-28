@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import SVG from 'svg.js';
-import { NonNullAssert } from '@angular/compiler';
 
 @Component({
   selector: 'app-gctable',
@@ -74,12 +73,12 @@ export class GctableComponent implements OnInit {
   newGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
-    this.matchGameEvent.x = event.clientX - this.parent.left;
-    this.matchGameEvent.y = event.clientY - this.parent.top;
-    this.matchGameEvent.scorer = this.determineScorer(this.matchGameEvent.x);
+    this.gameStateData.x = event.clientX - this.parent.left;
+    this.gameStateData.y = event.clientY - this.parent.top;
+    this.gameStateData.scorer = this.determineScorer(this.gameStateData.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.matchGameEvent.x,
-      cy: this.matchGameEvent.y,
+      cx: this.gameStateData.x,
+      cy: this.gameStateData.y,
       fill: '#fff'
     });
   }
@@ -89,8 +88,8 @@ export class GctableComponent implements OnInit {
       this.gameStateData.p1_points_scored++;
       return this.gameStateData.player2;
     } else {
-      this.matchGameEvent.p2_points_scored++;
-      return this.matchGameEvent.player2;
+      this.gameStateData.p2_points_scored++;
+      return this.gameStateData.player2;
     }
   }
 }
