@@ -13,6 +13,8 @@ export class GctableComponent implements OnInit {
 
   @Input() gameStateData: any;
 
+  disable = true;
+
   scoreTypesArray = [
     'ace',
     'backhand',
@@ -66,6 +68,7 @@ export class GctableComponent implements OnInit {
   }
 
   newGameEvent(event: MouseEvent) {
+    this.toggleDisable();
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
     this.gameStateData.x = event.clientX - this.parent.left;
@@ -78,6 +81,10 @@ export class GctableComponent implements OnInit {
     });
   }
 
+  toggleDisable() {
+    this.disable = !this.disable;
+  }
+
   determineScorer(x: number): string {
     if (x < 320){
       this.gameStateData.p1_points_scored++;
@@ -86,5 +93,10 @@ export class GctableComponent implements OnInit {
       this.gameStateData.p2_points_scored++;
       return this.gameStateData.player1;
     }
+  }
+
+  createSummaryString(p1GamePoints: number, p2GamePoints) {
+    this.gameStateData.p1GamePoints = p1GamePoints;
+    this.gameStateData.p2GamePoints = p2GamePoints;
   }
 }

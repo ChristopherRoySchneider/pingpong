@@ -3,18 +3,36 @@
 </div>
 {{ gameStateData | json }}
 <div class="bg-white p-3 my-3 rounded box-score">
-  <div class="w-50">
-    <form>
-      <div class="form-group">
-        <label for="gameStateData.type">Non-Scoring Game Events</label>
-        <select name="gameStateData.type" [(ngModel)]="gameStateData.type" class="form-control">
-          <option *ngFor="let type of nonScoreTypesArray" value="{{ type }}">{{ type }}</option>
-          <option>{{gameStateData.player1}} Wins Game</option>
-          <option>{{gameStateData.player2}} Wins Game</option>
-          <option>{{gameStateData.player1}} Wins Match</option>
-          <option>{{gameStateData.player2}} Wins Match</option>
-        </select>             
-      </div>
-    </form>
+  <div class="row">
+    <div class="col">
+      <form>
+        <div class="form-group">
+          <label for="gameStateData.type">Non-Scoring Game Events</label>
+          <select name="gameStateData.type" [(ngModel)]="gameStateData.type" class="form-control">
+            <option *ngFor="let type of nonScoreTypesArray" value="{{ type }}">{{ type }}</option>
+            <option>{{gameStateData.player1}} Wins Game</option>
+            <option>{{gameStateData.player2}} Wins Game</option>
+            <option>{{gameStateData.player1}} Wins Match</option>
+            <option>{{gameStateData.player2}} Wins Match</option>
+          </select>             
+        </div>
+        <div class="text-right">
+          <button class="btn btn-primary">Submit Non-Scoring Game Event</button>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <form>
+        <div class="form-group">
+          <label for="gameStateData.type">Scoring Game Events</label>
+          <select name="gameStateData.type" [(ngModel)]="gameStateData.type" class="form-control" [disabled]="disable">
+            <option *ngFor="let type of scoreTypesArray" value="{{ type }}">{{ type }}</option>
+          </select>             
+        </div>
+        <div class="text-right">
+          <button class="btn btn-primary" [disabled]="disable">Submit Scoring Game Event</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
