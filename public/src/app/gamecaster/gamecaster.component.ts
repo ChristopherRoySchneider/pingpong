@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-gamecaster',
@@ -14,7 +15,7 @@ export class GamecasterComponent implements OnInit {
     private _http: HttpService,
     private _route: ActivatedRoute
   ) { }
-
+  gameIndex=0;
   translator = {
     0: "First",
     1: "Second",
@@ -26,10 +27,10 @@ export class GamecasterComponent implements OnInit {
     7: "Eighth",
     8: "Ninth",
     9: "Tenth"
-  }
-  
-  match: Match;
+  };
 
+  match: Match;
+  summaryData={};
   gameStateData = {
     matchId: '',
     gameIndex: 0,
@@ -53,13 +54,19 @@ export class GamecasterComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
+
     });
+
+
   }
 
   getMatchByIdFromService(id: string) {
     this._http.getMatchById(id).subscribe(data => {
       this.match = data['data'][0];
       this.mapGameStateData(this.match);
+      this.summaryData['match']=this.match ;
+      this.gameIndex=this.match.games.length-1;
+      console.log("summary",this.summaryData)
     });
   }
 
@@ -71,8 +78,8 @@ export class GamecasterComponent implements OnInit {
     this.gameStateData.player2 = this.match.player2;
     this.gameStateData.matchWinner = this.match.winner;
     this.gameStateData.matchComplete = this.match.match_complete;
-    this.gameStateData.gameComplete = this.match.games[this.match.games.length-1].game_complete;
-    this.gameStateData.gameWinner = this.match.games[this.match.games.length-1].winner;
+    // this.gameStateData.gameComplete = this.match.games[this.match.games.length-1].game_complete;
+    // this.gameStateData.gameWinner = this.match.games[this.match.games.length-1].winner;
     for (let game of this.match.games) {
       if (game.winner === this.match.player1) {
         this.gameStateData.p1MatchPoints++;
@@ -82,9 +89,9 @@ export class GamecasterComponent implements OnInit {
       }
     }
     const mostRecentGame = this.match.games.length-1
-    const mostRecentEvent = this.match.games[mostRecentGame].game_events.length-1;
-    this.gameStateData.p1GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p1_points_scored;
-    this.gameStateData.p2GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p2_points_scored;
+    // const mostRecentEvent = this.match.games[mostRecentGame].game_events.length-1;
+    // this.gameStateData.p1GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p1_points_scored;
+    // this.gameStateData.p2GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p2_points_scored;
     console.log('Match:', this.match);
     console.log('Game State Data:', this.gameStateData);
   }
