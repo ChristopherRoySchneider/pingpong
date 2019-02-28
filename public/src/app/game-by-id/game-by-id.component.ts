@@ -36,7 +36,7 @@ export class GameByIdComponent implements OnInit {
       console.log(params["matchid"]);
       this.matchId = params["matchid"];
       this.gameId = params["gameid"];
-      this.getMatchByIdFromService(this.matchId);
+      // this.getMatchByIdFromService(this.matchId);
       this.getGameByIdFromService(this.matchId, this.gameId);
 
       this.gameEventConnection = this._SocketService

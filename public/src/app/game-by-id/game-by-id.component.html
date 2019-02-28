@@ -3,9 +3,9 @@
 
 </p>
 <p>{{game | json}}</p>
-<p *ngFor="let game_event of game['game_events']">
+<!-- <p *ngFor="let game_event of game['game_events']">
   {{game_event | json}}
-</p>
+</p> -->
 <form (submit)="putGameEvent(matchId,gameId,newGameEvent)">
   <div class="form-group">
     <label for="newGameEvent.p1_points_scored">Player1 Points Scored</label>
@@ -48,7 +48,7 @@
         id="newGameEvent.x"
         name="newGameEvent.x"
         [(ngModel)]="newGameEvent['x']"
-  
+
       />
     </div>
     <div class="form-group">
@@ -59,7 +59,7 @@
           id="newGameEvent.y"
           name="newGameEvent.y"
           [(ngModel)]="newGameEvent['y']"
-    
+
         />
       </div>
 

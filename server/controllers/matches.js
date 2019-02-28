@@ -73,28 +73,32 @@ module.exports = {
     Match.find({ _id: req.params.matchid }, function(err, p_by_name) {
       if (err) {
         console.log("something went wrong");
-        res.json({ message: "Error", error: err });
+        return res.json({ message: "Error", error: err });
       } else {
         // else console.log that we did well and then redirect to the root route
         console.log("got matches by name:", p_by_name);
-        res.json({ message: "Success", data: p_by_name });
+        return res.json({ message: "Success", data: p_by_name });
       }
     });
   },
   get_game_by_id: function(req, res) {
-    Match.findOne({ _id: req.params.matchid }, function(err, match_by_name) {
+    Match.findOne({ _id: req.params.matchid }, function(err, match_by_id) {
       if (err) {
         console.log("something went wrong");
-        res.json({ message: "Error", error: err });
+        return res.json({ message: "Error", error: err });
       } else {
         // else console.log that we did well and then redirect to the root route
-        console.log("got matches by name:", match_by_name);
-        match_by_name.games.forEach(game => {
+        console.log("got matches by name:", match_by_id);
+        var game_to_return
+        match_by_id.games.forEach(game => {
           if (game._id == req.params.gameid) {
-            var game_to_return = game;
+             game_to_return = game;
           }
-          res.json({ message: "Success", game: game_to_return });
+          
+           
         });
+        console.log("#########GAme To Return",game_to_return)
+           return res.json({ message: "Success", game: game_to_return });
       }
     });
   },
