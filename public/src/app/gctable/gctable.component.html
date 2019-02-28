@@ -1,14 +1,8 @@
 <div class="my-3 d-flex justify-content-center">
-  <div id="drawing" class="shadow" (click)="newGameEvent($event)"></div>
+  <div id="drawing" class="shadow" (click)="newMatchGameEvent($event)"></div>
 </div>
-{{ gameStateData | json }}
+{{ match | json }}
 <div class="bg-white p-3 my-3 rounded box-score">
-  <div class="w-50">
-    <form>
-      <select name="gameStateData.type" [(ngModel)]="gameStateData.type">
-        <option value="Non-Scoring Game Event">Non-Scoring Game Event</option>
-        <option *ngFor="let type of nonScoreTypesArray" value="{{ type }}">{{ type }}</option>
-      </select>
-    </form>
-  </div>
+  <button class="btn btn-primary">Backhand</button>
+  <button class="btn btn-primary">Block</button>
 </div>

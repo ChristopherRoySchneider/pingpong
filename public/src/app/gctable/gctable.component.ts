@@ -11,35 +11,6 @@ export class GctableComponent implements OnInit {
 
   constructor( private _http: HttpService ) { }
 
-  @Input() gameStateData: any;
-
-  scoreTypesArray = [
-    'ace',
-    'backhand',
-    'block',
-    'chop',
-    'drop shot',
-    'flick',
-    'forehand',
-    'hit',
-    'kill shot',
-    'lob',
-    'loop',
-    'out',
-    'push',
-    'serve',
-    'smash'
-  ];
-
-  nonScoreTypesArray = [
-    'New Game',
-    'Let',
-    `${this.gameStateData.player1 } Wins Game`,
-    `${this.gameStateData.player2 } Wins Game`,
-    `${this.gameStateData.player1 } Wins Match`,
-    `${this.gameStateData.player2 } Wins Match`
-  ]
-
   draw: any;
   table: any;
   centerLine: any;
@@ -47,6 +18,21 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
+  @Input() match: any;
+  matchGameEvent: any = {
+    player1: '',
+    player2: '',
+    matchWinner: '',
+    match_complete: false,
+    game_complete: false,
+    gameWinner: '',
+    p1_points_scored: 0,
+    scorer: '',
+    p2_points_scored: 0,
+    type: '',
+    x: 0,
+    y: 0
+  }
 
   ngOnInit() {
     this.makeTable();
@@ -69,26 +55,26 @@ export class GctableComponent implements OnInit {
     })
   }
 
-  newGameEvent(event: MouseEvent) {
+  newMatchGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
-    this.gameStateData.x = event.clientX - this.parent.left;
-    this.gameStateData.y = event.clientY - this.parent.top;
-    this.gameStateData.scorer = this.determineScorer(this.gameStateData.x);
+    this.matchGameEvent.x = event.clientX - this.parent.left;
+    this.matchGameEvent.y = event.clientY - this.parent.top;
+    this.matchGameEvent.scorer = this.determineScorer(this.matchGameEvent.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.gameStateData.x,
-      cy: this.gameStateData.y,
+      cx: this.matchGameEvent.x,
+      cy: this.matchGameEvent.y,
       fill: '#fff'
     });
   }
 
   determineScorer(x: number): string {
     if (x < 178){
-      this.gameStateData.p1_points_scored++;
-      return this.gameStateData.player2;
+      this.matchGameEvent.p1_points_scored++;
+      return this.matchGameEvent.player1;
     } else {
-      this.gameStateData.p2_points_scored++;
-      return this.gameStateData.player1;
+      this.matchGameEvent.p2_points_scored++;
+      return this.matchGameEvent.player2;
     }
   }
 }
