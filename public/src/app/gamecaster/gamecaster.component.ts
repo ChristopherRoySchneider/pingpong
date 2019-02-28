@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { HttpService } from '../http.service';
-import { Match } from '../models/match';
 
 @Component({
   selector: 'app-gamecaster',
@@ -11,11 +10,11 @@ import { Match } from '../models/match';
 export class GamecasterComponent implements OnInit {
 
   constructor(
-    private _http: HttpService,
-    private _route: ActivatedRoute
+    private _httpService: HttpService,
+    private _route: ActivatedRoute,
+    private _router: Router
   ) { }
-
-  translator = {
+  dict = {
     0: "First",
     1: "Second",
     2: "Third",
@@ -27,70 +26,48 @@ export class GamecasterComponent implements OnInit {
     8: "Ninth",
     9: "Tenth"
   }
+  matchId: any;
+  match: any;
+  gameIndex: number;
+  gameIndexString: any;
   
-  match: Match;
-
-  gameStateData = {
-    matchId: '',
-    gameIndex: 0,
-    gameIndexString: '',
-    player1: '',
-    player2: '',
-    matchWinner: null,
-    matchComplete: false,
-    gameComplete: false,
-    gameWinner: null,
-    p1MatchPoints: 0,
-    p2MatchPoints: 0,
-    p1GamePoints: 0,
-    p2GamePoints: 0,
-    scorer: '',
-    type: '',
-    x: 0,
-    y: 0
-  }
+  // matchGameEvent: any = {
+  //   gameIndex: 0,
+  //   gameIndexString: '',
+  //   player1: '',
+  //   player2: '',
+  //   matchWinner: '',
+  //   match_complete: false,
+  //   game_complete: false,
+  //   gameWinner: '',
+  //   p1_points_scored: 0,
+  //   scorer: '',
+  //   p2_points_scored: 0,
+  //   type: '',
+  //   x: 0,
+  //   y: 0
+  // }
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      this.getMatchByIdFromService(params['matchid']);
+      this.matchId = params['matchid']
+      this.getMatchByIdFromService(params["matchid"]);
     });
   }
 
-  getMatchByIdFromService(id: string) {
-    this._http.getMatchById(id).subscribe(data => {
+  getMatchByIdFromService(id?: string) {
+    let observable = this._httpService.getMatchById(id);
+    observable.subscribe(data => {
+      console.log('Got our match by id the new way!', data);
       this.match = data['data'][0];
-      this.mapGameStateData(this.match);
+      this.gameIndex = this.match.games.length - 1;
+      this.gameIndexString = this.dict[this.gameIndex];
+      console.log('************game index:', this.gameIndex,typeof(this.gameIndex), this.gameIndexString)
+      console.log('this.matchToEdit', this.match);
     });
   }
 
-  mapGameStateData(match: Match) {
-    this.gameStateData.matchId = match._id;
-    this.gameStateData.gameIndex = match.games.length-1;
-    this.gameIndexToString(this.gameStateData.gameIndex);
-    this.gameStateData.player1 = this.match.player1;
-    this.gameStateData.player2 = this.match.player2;
-    this.gameStateData.matchWinner = this.match.winner;
-    this.gameStateData.matchComplete = this.match.match_complete;
-    this.gameStateData.gameComplete = this.match.games[this.match.games.length-1].game_complete;
-    this.gameStateData.gameWinner = this.match.games[this.match.games.length-1].winner;
-    for (let game of this.match.games) {
-      if (game.winner === this.match.player1) {
-        this.gameStateData.p1MatchPoints++;
-      }
-      else if (game.winner === this.match.player2) {
-        this.gameStateData.p2MatchPoints++;
-      }
-    }
-    const mostRecentGame = this.match.games.length-1
-    const mostRecentEvent = this.match.games[mostRecentGame].game_events.length-1;
-    this.gameStateData.p1GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p1_points_scored;
-    this.gameStateData.p2GamePoints = this.match.games[mostRecentGame].game_events[mostRecentEvent].p2_points_scored;
-    console.log('Match:', this.match);
-    console.log('Game State Data:', this.gameStateData);
-  }
 
-  gameIndexToString(index: number) {
-    this.gameStateData.gameIndexString = this.translator[index];
-  }
+  
 
 }

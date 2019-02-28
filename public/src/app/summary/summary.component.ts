@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-summary',
@@ -8,8 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SummaryComponent implements OnInit {
 
   constructor() { }
-
-  @Input() gameStateData: any;
 
   ngOnInit() {
   }

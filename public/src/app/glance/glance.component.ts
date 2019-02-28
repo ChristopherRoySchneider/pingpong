@@ -9,7 +9,7 @@ export class GlanceComponent implements OnInit {
 
   constructor() { }
 
-  @Input() gameStateData: any;
+  @Input() match: any;
   
   ngOnInit() {
   }

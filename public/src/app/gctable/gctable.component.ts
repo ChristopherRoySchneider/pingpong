@@ -74,12 +74,12 @@ export class GctableComponent implements OnInit {
   newGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
-    this.gameStateData.x = event.clientX - this.parent.left;
-    this.gameStateData.y = event.clientY - this.parent.top;
-    this.gameStateData.scorer = this.determineScorer(this.gameStateData.x);
+    this.matchGameEvent.x = event.clientX - this.parent.left;
+    this.matchGameEvent.y = event.clientY - this.parent.top;
+    this.matchGameEvent.scorer = this.determineScorer(this.matchGameEvent.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.gameStateData.x,
-      cy: this.gameStateData.y,
+      cx: this.matchGameEvent.x,
+      cy: this.matchGameEvent.y,
       fill: '#fff'
     });
   }
@@ -89,8 +89,8 @@ export class GctableComponent implements OnInit {
       this.gameStateData.p1_points_scored++;
       return this.gameStateData.player2;
     } else {
-      this.gameStateData.p2_points_scored++;
-      return this.gameStateData.player1;
+      this.matchGameEvent.p2_points_scored++;
+      return this.matchGameEvent.player2;
     }
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { HttpService } from '../http.service';
-import { Match } from '../models/match';
 
 @Component({
   selector: 'app-match-by-id',
@@ -11,7 +10,7 @@ import { Match } from '../models/match';
 export class MatchByIdComponent implements OnInit {
 likedThisMatch=false;
 matchId=null;
-match: Match;
+match={};
 errors=[];
   constructor(private _httpService: HttpService,
     private _route: ActivatedRoute,
