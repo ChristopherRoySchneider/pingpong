@@ -5,14 +5,11 @@
     <p>Match Winner: {{match['winner']}}</p>
     <p>match complete: {{match['match_complete']}}</p>
     <div *ngFor="let game of match.games">
-      <p>Game Winner: {{game.winner}}</p>
-      <p>Game Complete: {{game.game_complete}}</p>
-      <p>P1 points: {{game.p1_points_scored}}</p>
-      <p>P2 points: {{game.p2_points_scored}}</p>
-      
+
+      <a href="view/{{matchId}}/games/{{game._id}}">Game</a>
     </div>
-    
-  
+
+
     <a class="ml-2 btn btn-primary" href="/edit/{{match['_id']}}">Edit</a>
 
     <button
@@ -22,7 +19,7 @@
       Delete
     </button>
 
-    <button 
+    <button
       class="ml-2 btn btn-primary"
       (click)="addGame(match['_id'])"
     >

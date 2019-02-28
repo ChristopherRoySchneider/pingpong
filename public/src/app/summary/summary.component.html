@@ -1,10 +1,17 @@
 <div class="bg-white p-3 rounded-bottom summary">
-  
+  <!-- {{match.games[gameIndex].game_events | json}} -->
+  {{gameIndex | json}}
+
   <table class="table table-bordered mb-3">
     <tr class="justify-content-end bg-secondary text-white">
       <td class="w-75 mr-auto p-1">GAME SUMMARY</td>
-      <td class="text-center p-1">ALE</td>
-      <td class="text-center p-1">KIR</td>
+      <td class="text-center p-1">{{match.player1}}</td>
+      <td class="text-center p-1">{{match.player2}}</td>
+    </tr>
+    <tr *ngFor="let game_event of match.games[gameIndex].game_events.reverse()">
+        <td class="w-75 mr-auto p-1">{{game_event | json}}</td>
+        <td class="text-center p-1">11</td>
+        <td class="text-center p-1">9</td>
     </tr>
     <tr class="justify-content-end">
       <td colspan="3" class="p-1">G1 - END OF FIRST GAME</td>

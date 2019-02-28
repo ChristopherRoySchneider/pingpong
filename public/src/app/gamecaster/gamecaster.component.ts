@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-gamecaster',
@@ -16,6 +17,7 @@ export class GamecasterComponent implements OnInit {
   ) { }
   
   match: Match;
+  gameIndex=0;
 
   // gameStateData = {
   //   matchId: '',
@@ -40,7 +42,10 @@ export class GamecasterComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
+
     });
+
+
   }
 
   getMatchByIdFromService(id: string) {

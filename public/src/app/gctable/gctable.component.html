@@ -1,7 +1,7 @@
 <div class="my-3 d-flex justify-content-center">
   <div id="drawing" class="shadow" (click)="populateGameEvent($event)"></div>
 </div>
-{{ newGameEventObj | json }}
+{{ match | json }}
 <div *ngIf="match" class="bg-white p-3 my-3 rounded box-score">
   <div class="row">
     <div class="col">
@@ -14,7 +14,7 @@
             <option>{{ match.player2 }} Wins Game</option>
             <option>{{ match.player1 }} Wins Match</option>
             <option>{{ match.player2 }} Wins Match</option>
-          </select>             
+          </select>
         </div>
         <div class="text-right">
           <button class="btn btn-primary">Submit Non-Scoring Game Event</button>
@@ -27,7 +27,7 @@
           <label for="newGameEventObj.type">Scoring Game Events</label>
           <select name="newGameEventObj.type" [(ngModel)]="newGameEventObj.type" class="form-control">
             <option *ngFor="let type of scoreTypesArray" value="{{ type }}">{{ type }}</option>
-          </select>             
+          </select>
         </div>
         <div class="text-right">
           <button class="btn btn-primary" (click)="postAndEmitGameEvent()">Submit Scoring Game Event</button>
