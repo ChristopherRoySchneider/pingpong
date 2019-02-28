@@ -15,6 +15,12 @@ module.exports = function () {
         type: {
             type: String,
         },
+        x: {
+            type: Number,
+        },
+        y: {
+            type: Number,
+        },
     
     }, { timestamps: true });
 
@@ -27,7 +33,15 @@ module.exports = function () {
             type: String,
             default: null,
         },
-        game_events: [GameEventSchema]
+        game_events: [GameEventSchema],
+        p1_points_scored: {
+            type: Number,
+            default: 0
+        },
+        p2_points_scored: {
+            type: Number,
+            default: 0
+        },
     }, { timestamps: true });
     
 
@@ -52,7 +66,9 @@ module.exports = function () {
             type: Boolean,
             default: false,
         },
-        games: [GameSchema]
+        games: [GameSchema],
+        p1_games_won:{type:Number},
+        p2_games_won:{type:Number},
     }, { timestamps: true });
     
     
