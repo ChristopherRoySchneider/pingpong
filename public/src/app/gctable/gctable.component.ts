@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import SVG from 'svg.js';
+import { NonNullAssert } from '@angular/compiler';
 
 @Component({
   selector: 'app-gctable',
@@ -34,10 +35,9 @@ export class GctableComponent implements OnInit {
   nonScoreTypesArray = [
     'New Game',
     'Let',
-    `${this.gameStateData.player1 } Wins Game`,
-    `${this.gameStateData.player2 } Wins Game`,
-    `${this.gameStateData.player1 } Wins Match`,
-    `${this.gameStateData.player2 } Wins Match`
+    // `${this.gameStateData.player2 } Wins Game`,
+    // `${this.gameStateData.player1 } Wins Match`,
+    // `${this.gameStateData.player2 } Wins Match`
   ]
 
   draw: any;
@@ -50,6 +50,8 @@ export class GctableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
+    // this.nonScoreTypesArray.push(`${ this.gameStateData.player1 } Wins Game`);
+    // console.log('***************', this.gameStateData )
   }
 
   makeTable() {
@@ -83,7 +85,7 @@ export class GctableComponent implements OnInit {
   }
 
   determineScorer(x: number): string {
-    if (x < 178){
+    if (x < 320){
       this.gameStateData.p1_points_scored++;
       return this.gameStateData.player2;
     } else {
