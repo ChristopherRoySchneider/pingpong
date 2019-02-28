@@ -1,6 +1,6 @@
 <div class="game">
   <app-glance [gameStateData]="gameStateData"></app-glance>
   <app-gctable [gameStateData]="gameStateData"></app-gctable>
-  <app-box-score [gameStateData]="gameStateData"></app-box-score>
+  <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
   <app-summary [gameStateData]="gameStateData"></app-summary>
 </div>

@@ -7,10 +7,9 @@
     <div *ngFor="let game of match.games">
       <p>Game Winner: {{game.winner}}</p>
       <p>Game Complete: {{game.game_complete}}</p>
-      <div *ngFor="let game_event of game.game_events">
-        <p>P1 points: {{game_event.p1_points_scored}}</p>
-        <p>P2 points: {{game_event.p2_points_scored}}</p>
-      </div>
+      <p>P1 points: {{game.p1_points_scored}}</p>
+      <p>P2 points: {{game.p2_points_scored}}</p>
+      
     </div>
     
   
