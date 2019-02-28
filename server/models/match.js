@@ -1,5 +1,4 @@
 var validator = require('validator')
-var uniqueValidator = require('mongoose-unique-validator');
 const mongoose = require('mongoose')
 module.exports = function () {
     
@@ -42,6 +41,10 @@ module.exports = function () {
             type: Number,
             default: 0
         },
+        serving: {
+            type: String,
+            default: "p1",
+        },
     }, { timestamps: true });
     
 
@@ -67,8 +70,14 @@ module.exports = function () {
             default: false,
         },
         games: [GameSchema],
-        p1_games_won:{type:Number},
-        p2_games_won:{type:Number},
+        p1_games_won: {
+            type:Number,
+            default: 0
+        },
+        p2_games_won:{
+            type:Number,
+            default: 0
+        },
     }, { timestamps: true });
     
     

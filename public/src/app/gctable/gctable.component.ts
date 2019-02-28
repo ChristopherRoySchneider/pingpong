@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
+import { SocketService } from "../socket.service";
 import SVG from 'svg.js';
+import { Match } from '../models/match';
 
 @Component({
   selector: 'app-gctable',
@@ -9,11 +11,12 @@ import SVG from 'svg.js';
 })
 export class GctableComponent implements OnInit {
 
-  constructor( private _http: HttpService ) { }
+  constructor(
+    private _http: HttpService,
+    private _socket: SocketService
+    ) { }
 
-  @Input() gameStateData: any;
-
-  disable = true;
+  @Input() match: Match;
 
   scoreTypesArray = [
     'ace',
@@ -35,7 +38,8 @@ export class GctableComponent implements OnInit {
 
   nonScoreTypesArray = [
     'New Game',
-    'Let'
+    'Let',
+    'Service Change'
   ]
 
   draw: any;
@@ -45,6 +49,17 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
+
+  gameId: any;
+
+  newGameEventObj = {
+    scorer: '',
+    p1Points: 0,
+    p2Points: 0,
+    type: '',
+    x: 0,
+    y: 0
+  }
 
   ngOnInit() {
     this.makeTable();
@@ -67,36 +82,57 @@ export class GctableComponent implements OnInit {
     })
   }
 
-  newGameEvent(event: MouseEvent) {
-    this.toggleDisable();
+  populateGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
-    this.gameStateData.x = event.clientX - this.parent.left;
-    this.gameStateData.y = event.clientY - this.parent.top;
-    this.gameStateData.scorer = this.determineScorer(this.gameStateData.x);
+    this.newGameEventObj.x = event.clientX - this.parent.left;
+    this.newGameEventObj.y = event.clientY - this.parent.top;
+    this.newGameEventObj.scorer = this.determineScorer(this.newGameEventObj.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.gameStateData.x,
-      cy: this.gameStateData.y,
+      cx: this.newGameEventObj.x,
+      cy: this.newGameEventObj.y,
       fill: '#fff'
     });
   }
 
-  toggleDisable() {
-    this.disable = !this.disable;
+  postAndEmitGameEvent() {
+    this.gameId = this.getGameId(this.match);
+    this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
   }
 
   determineScorer(x: number): string {
     if (x < 320){
-      this.gameStateData.p1_points_scored++;
-      return this.gameStateData.player2;
+      return this.match.player2;
     } else {
-      this.gameStateData.p2_points_scored++;
-      return this.gameStateData.player1;
+      return this.match.player1;
     }
   }
 
-  createSummaryString(p1GamePoints: number, p2GamePoints) {
-    this.gameStateData.p1GamePoints = p1GamePoints;
-    this.gameStateData.p2GamePoints = p2GamePoints;
+  getGameId(match: Match) {
+    return match.games[match.games.length-1]._id;
+  }
+
+  putGameEvent(matchId, gameId, newGameEvent) {
+    console.log("Event emitted. Sending:", newGameEvent);
+
+    var gameEventdata = {
+      gameEvent: newGameEvent,
+      matchid: matchId,
+      gameid: gameId
+    };
+    
+    this._http.postGameEvent(
+      matchId,
+      gameId,
+      newGameEvent
+    ).subscribe(data => {
+      console.log("put game event", data);
+
+      if (data["message"] == "Error") {
+        console.log("Error saving Match", data);
+      } else {
+        this._socket.sendGameEvent(gameEventdata);
+      }
+    });
   }
 }
