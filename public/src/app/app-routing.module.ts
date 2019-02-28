@@ -13,7 +13,6 @@ import { GameByIdComponent } from './game-by-id/game-by-id.component';
 import { CastComponent } from './cast/cast.component';
 
 const routes: Routes = [
-  { path: 'watch', component: WatchComponent },
   { path: 'gamecast/:matchid', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
@@ -22,7 +21,7 @@ const routes: Routes = [
   { path: 'cast',component: CastComponent },
   // use a colon and parameter name to include a parameter in the url
   { path: 'edit/:matchid', component: EditMatchComponent },
-  { path: 'view/:matchid', component: MatchByIdComponent },
+  { path: 'view/:matchid', component: WatchComponent },
   { path: 'view/:matchid/games/:gameid', component: GameByIdComponent },
   // redirect to /alpha if there is nothing in the url
   { path: '', pathMatch: 'full', redirectTo:"/home" },

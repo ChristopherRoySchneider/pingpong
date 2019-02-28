@@ -1,6 +1,6 @@
 <div class="game">
-  <app-glance></app-glance>
-  <app-table></app-table>
-  <app-box-score></app-box-score>
+  <app-glance [match]="match"></app-glance>
+  <app-table *ngIf="match" [match]="match"></app-table>
+  <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
   <app-summary></app-summary>
 </div>
