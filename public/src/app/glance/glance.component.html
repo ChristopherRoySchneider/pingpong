@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-between align-items-center px-3 rounded-bottom glance">
   <div class="text-center">
     <i class="fas fa-user"></i>
-    <p class="text-uppercase mb-0" style="font-size: small;">{{ match.player1 }}</p>
+    <p class="text-uppercase mb-0" style="font-size: small;">{{ gameStateData.player1 }}</p>
   </div>
   <div class="score text-center pb-2">
-    <h4 class="mb-0">0 - 0</h4>
-    <p class="mb-0 text-uppercase">First Game</p>
+    <h4 class="mb-0">{{ gameStateData.p1MatchPoints }} - {{ gameStateData.p2MatchPoints }}</h4>
+    <p class="mb-0 text-uppercase">{{ gameStateData.gameIndexString }} Game</p>
   </div>
   <div class="text-center">
     <i class="fas fa-user"></i>
-    <p class="text-uppercase mb-0" style="font-size: small;">{{ match.player2 }}</p>
+    <p class="text-uppercase mb-0" style="font-size: small;">{{ gameStateData.player2 }}</p>
   </div>
 </div>
