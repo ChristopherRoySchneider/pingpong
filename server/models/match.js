@@ -70,8 +70,14 @@ module.exports = function () {
             default: false,
         },
         games: [GameSchema],
-        p1_games_won:{type:Number},
-        p2_games_won:{type:Number},
+        p1_games_won: {
+            type:Number,
+            default: 0
+        },
+        p2_games_won:{
+            type:Number,
+            default: 0
+        },
     }, { timestamps: true });
     
     
