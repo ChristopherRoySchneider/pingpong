@@ -33,9 +33,11 @@
               <p>{{ match.createdAt | date: 'shortTime'}}</p>
             </div>
           </div>
+          <div class="function">
             <a class=" btn btn-primary" href="/gamecast/{{match._id}}">Cast</a>
             <a class=" btn btn-primary" href="/edit/{{match._id}}">Edit</a>
             <button class=" btn btn-primary" (click)= "deleteMatch(match._id)">Delete</button>
+          </div>
           </div>
         </div>
       </div>
