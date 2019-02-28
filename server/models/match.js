@@ -1,5 +1,4 @@
 var validator = require('validator')
-var uniqueValidator = require('mongoose-unique-validator');
 const mongoose = require('mongoose')
 module.exports = function () {
     
@@ -41,6 +40,10 @@ module.exports = function () {
         p2_points_scored: {
             type: Number,
             default: 0
+        },
+        serving: {
+            type: String,
+            default: "p1",
         },
     }, { timestamps: true });
     
