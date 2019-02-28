@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EditMatchComponent } from './edit-match/edit-match.component';
 import { GameByIdComponent } from './game-by-id/game-by-id.component';
 import { CastComponent } from './cast/cast.component';
+
 const routes: Routes = [
   { path: 'watch', component: WatchComponent },
   { path: 'gamecast/:matchid', component: GamecasterComponent },

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import SVG from 'svg.js';
+import { NonNullAssert } from '@angular/compiler';
 
 @Component({
   selector: 'app-gctable',
@@ -11,6 +12,34 @@ export class GctableComponent implements OnInit {
 
   constructor( private _http: HttpService ) { }
 
+  @Input() gameStateData: any;
+
+  scoreTypesArray = [
+    'ace',
+    'backhand',
+    'block',
+    'chop',
+    'drop shot',
+    'flick',
+    'forehand',
+    'hit',
+    'kill shot',
+    'lob',
+    'loop',
+    'out',
+    'push',
+    'serve',
+    'smash'
+  ];
+
+  nonScoreTypesArray = [
+    'New Game',
+    'Let',
+    // `${this.gameStateData.player2 } Wins Game`,
+    // `${this.gameStateData.player1 } Wins Match`,
+    // `${this.gameStateData.player2 } Wins Match`
+  ]
+
   draw: any;
   table: any;
   centerLine: any;
@@ -18,24 +47,11 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
-  @Input() match: any;
-  matchGameEvent: any = {
-    player1: '',
-    player2: '',
-    matchWinner: '',
-    match_complete: false,
-    game_complete: false,
-    gameWinner: '',
-    p1_points_scored: 0,
-    scorer: '',
-    p2_points_scored: 0,
-    type: '',
-    x: 0,
-    y: 0
-  }
 
   ngOnInit() {
     this.makeTable();
+    // this.nonScoreTypesArray.push(`${ this.gameStateData.player1 } Wins Game`);
+    // console.log('***************', this.gameStateData )
   }
 
   makeTable() {
@@ -55,7 +71,7 @@ export class GctableComponent implements OnInit {
     })
   }
 
-  newMatchGameEvent(event: MouseEvent) {
+  newGameEvent(event: MouseEvent) {
     this.target = <HTMLInputElement>event.target;
     this.parent = this.target.getBoundingClientRect();
     this.matchGameEvent.x = event.clientX - this.parent.left;
@@ -69,9 +85,9 @@ export class GctableComponent implements OnInit {
   }
 
   determineScorer(x: number): string {
-    if (x < 178){
-      this.matchGameEvent.p1_points_scored++;
-      return this.matchGameEvent.player1;
+    if (x < 320){
+      this.gameStateData.p1_points_scored++;
+      return this.gameStateData.player2;
     } else {
       this.matchGameEvent.p2_points_scored++;
       return this.matchGameEvent.player2;

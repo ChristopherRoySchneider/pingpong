@@ -3,6 +3,18 @@
 </div>
 {{ match | json }}
 <div class="bg-white p-3 my-3 rounded box-score">
-  <button class="btn btn-primary">Backhand</button>
-  <button class="btn btn-primary">Block</button>
+  <div class="w-50">
+    <form>
+      <div class="form-group">
+        <label for="gameStateData.type">Non-Scoring Game Events</label>
+        <select name="gameStateData.type" [(ngModel)]="gameStateData.type">
+          <option *ngFor="let type of nonScoreTypesArray" value="{{ type }}">{{ type }}</option>
+          <option>{{gameStateData.player1}} Wins Game</option>
+          <option>{{gameStateData.player2}} Wins Game</option>
+          <option>{{gameStateData.player1}} Wins Match</option>
+          <option>{{gameStateData.player2}} Wins Match</option>
+        </select>             
+      </div>
+    </form>
+  </div>
 </div>
