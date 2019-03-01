@@ -4,8 +4,8 @@ export interface Game_event {
 	scorer: string,
 	_id: string;
 	type: string;
-	x: string;
-	y: string;
+	x: number;
+	y: number;
 	createdAt: string;
 	updatedAt: string;
 }
