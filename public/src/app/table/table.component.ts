@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SocketService } from "../socket.service";
 import SVG from 'svg.js';
-import { Match } from '../models/match';
+import { Match, Game } from '../models/match';
 
 @Component({
   selector: 'app-table',
@@ -12,8 +12,9 @@ export class TableComponent implements OnInit {
 
   constructor( private _socket: SocketService ) { }
 
-  @Input() match: Match
-  game: any;
+  @Input('match') match: Match
+  @Input('gameIndex') gameIndex: number;
+  game: Game;
   gameEvent: any
 
   gameEventConnection: any;
@@ -31,6 +32,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.makeTable();
     this.game = this.match.games[this.match.games.length-1];
+    this.drawPreviousBalls(this.game);
     this.gameEventConnection = this._socket
       .subscribeGameEvent()
       .subscribe(message => {
@@ -42,7 +44,9 @@ export class TableComponent implements OnInit {
 
         console.log(this.game['game_events']);
         this.gameEvent = this.game.game_events[this.game.game_events.length-1];
-        this.drawBall(this.gameEvent.x, this.gameEvent.y);
+        if (this.gameEvent.x) {
+          this.drawBall(this.gameEvent.x, this.gameEvent.y);
+        }
     });
   }
 
@@ -63,9 +67,18 @@ export class TableComponent implements OnInit {
     })
   }
 
+  drawPreviousBalls(game: Game) {
+    console.log('in the drawPreviousBalls function')
+    for (let gameEvent of game.game_events) {
+      if (gameEvent.x) {
+        this.drawBall(gameEvent.x, gameEvent.y);
+      }
+    }
+  }
+
   drawBall(x: number, y: number) {
-    this.x = this.gameEvent.x;
-    this.y = this.gameEvent.y;
+    this.x = x;
+    this.y = y;
     console.log(this.x, this.x);
     this.ball = this.draw.circle(10).attr({
       cx: this.x,
