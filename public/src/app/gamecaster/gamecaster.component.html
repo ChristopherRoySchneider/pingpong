@@ -8,6 +8,7 @@
         <option *ngFor="let game of match.games; let i=index" type="number" value="{{ i }}">GAME {{ i+1 }}</option>
       </select>
       <button class="btn btn-sm btn-primary ml-3" (click)="setGameIndex(gameIndex)">SUBMIT</button>
+      <button class="btn btn-sm btn-primary ml-3" (click)="addGame(match['_id'])">NEW GAME</button>
     </form>
   </div>
   <app-gctable *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-gctable>

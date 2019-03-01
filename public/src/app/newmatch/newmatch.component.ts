@@ -35,7 +35,7 @@ export class NewmatchComponent implements OnInit {
         console.log(this.errors);
       } else {
         this.newMatch = {};
-        this._router.navigate(['/']);
+        this._router.navigate([`/cast`]);
         this.errors = null;
       }
     });
