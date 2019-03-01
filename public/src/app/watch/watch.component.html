@@ -2,5 +2,5 @@
   <app-glance [match]="match"></app-glance>
   <app-table *ngIf="match" [match]="match"></app-table>
   <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
-  <app-summary></app-summary>
+  <app-summary *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-summary>
 </div>
