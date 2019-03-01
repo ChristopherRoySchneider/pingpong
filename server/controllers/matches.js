@@ -149,6 +149,9 @@ module.exports = {
             if (game._id == req.params.gameid) {
               game.winner = req.body.winner;
               game.game_complete = req.body.game_complete;
+              game.p1_points_scored = req.body.p1_points_scored
+              game.p2_points_scored = req.body.p2_points_scored
+              game.serving = req.body.serving
             }})
       match.save(function(err) {
         if (err) {
