@@ -26,7 +26,11 @@ gameIndex=0;
   getMatchByIdFromService(id: string) {
     this._http.getMatchById(id).subscribe(data => {
       this.match = data['data'][0];
+      this.gameIndex = this.match.games.length-1;
     });
+  }
+  setGameIndex(idx:number){
+    this.gameIndex=idx;
   }
 
 }
