@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'cast',component: CastComponent },
   // use a colon and parameter name to include a parameter in the url
   { path: 'edit/:matchid', component: EditMatchComponent },
-  { path: 'view/:matchid', component: MatchByIdComponent },
-  { path: 'view/:matchid/games/:gameid', component: GameByIdComponent },
+  { path: 'read/:matchid', component: MatchByIdComponent },
+  { path: 'read/:matchid/games/:gameid', component: GameByIdComponent },
   // redirect to /alpha if there is nothing in the url
   { path: '', pathMatch: 'full', redirectTo:"/home" },
   // the ** will catch anything that did not match any of the above routes

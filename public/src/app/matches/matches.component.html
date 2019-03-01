@@ -26,14 +26,14 @@
             <div class="container">
             <div class="playerinfo">
               <h5 class="card-title">Player 1: {{ match.player1 }}</h5>
-              <h5 class="card-title">Player 2: {{ match.player2 }}</h5> 
+              <h5 class="card-title">Player 2: {{ match.player2 }}</h5>
             </div>
             <div class="datetime">
               <p>{{ match.createdAt | date: 'E, M/d/yy'}}</p>
               <p>{{ match.createdAt | date: 'shortTime'}}</p>
             </div>
           </div>
-            <a class=" btn btn-primary" href="/view/{{ match._id }}">View</a>
+            <a class=" btn btn-primary" href="/read/{{ match._id }}">View</a>
           </div>
         </div>
       </div>

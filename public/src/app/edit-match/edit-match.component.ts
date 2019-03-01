@@ -36,7 +36,7 @@ export class EditMatchComponent implements OnInit {
         console.log(this.errors);
       } else {
         this.matchToEdit = {};
-        this._router.navigate([`/view/${updatedMatch._id}`]);
+        this._router.navigate([`/read/${updatedMatch._id}`]);
         this.errors = null;
       }
     });

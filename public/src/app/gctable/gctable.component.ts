@@ -120,7 +120,7 @@ export class GctableComponent implements OnInit {
       matchid: matchId,
       gameid: gameId
     };
-    
+
     this._http.postGameEvent(
       matchId,
       gameId,
