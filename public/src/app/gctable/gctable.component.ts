@@ -126,34 +126,13 @@ export class GctableComponent implements OnInit {
     this.newGameEventObj.eventType = 'non-score'
     this.newGameEventObj.x = null
     this.newGameEventObj.y = null
-    this.newGameEventObj.scorer = null
-    if (this.newGameEventObj.type == "New Game"){
-      this.addGame(this.match['_id']);
+    if (this.newGameEventObj.type == "Service Change"){
+      this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
+    }
+    if (this.newGameEventObj.type == "Let"){
+      this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
     }
     this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj)
-  }
-
-  addGame(matchId) {
-    let observable = this._http.addGame(matchId,{});
-    observable.subscribe(data => {
-      console.log('posted data', data);
-      if (data['message'] == 'Error') {
-        console.log('Error saving Match');
-        this.errors = data['error'];
-        console.log(this.errors);
-      } else {
-        this.getMatchByIdFromService(this.match['_id']);
-        this.errors = null;
-      }
-    });
-  }
-  getMatchByIdFromService(id?: string) {
-    let observable = this._http.getMatchById(id);
-    observable.subscribe(data => {
-      console.log('Got our match by id the new way!', data);
-      this.match = data['data'][0];
-      console.log('this.matchToEdit', this.match);
-    });
   }
 
   determineScorer(x: number): string {
