@@ -27,3 +27,15 @@ nav a:hover {
 table {
     width: 640px;
 }
+
+.header {
+    background-color: #022b6d;
+}
+
+.w-840 {
+    width: 840px;
+}
+
+.main {
+    line-height: 2em;
+}
