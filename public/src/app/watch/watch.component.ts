@@ -18,12 +18,8 @@ export class WatchComponent implements OnInit {
   ) { }
 
   match: Match;
-<<<<<<< HEAD
-  gameIndex = 0;
-=======
 gameIndex=0;
 gameEventConnection;
->>>>>>> origin/master
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
