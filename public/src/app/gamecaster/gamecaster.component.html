@@ -1,4 +1,4 @@
-<div class="game">
+<div *ngIf="match" class="game">
   <app-glance *ngIf="match" [match]="match"></app-glance>
   <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
   <div class="justify-content-end">
@@ -10,7 +10,7 @@
       <button class="btn btn-sm btn-primary ml-3" (click)="setGameIndex(gameIndex)">SUBMIT</button>
     </form>
   </div>
-  <app-gctable *ngIf="match" [match]="match"></app-gctable>
+  <app-gctable *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-gctable>
   <app-summary *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-summary>
 </div>
 
