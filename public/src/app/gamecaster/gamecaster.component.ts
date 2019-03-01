@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
 import { tick } from '@angular/core/testing';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-gamecaster',
@@ -13,9 +14,11 @@ export class GamecasterComponent implements OnInit {
 
   constructor(
     private _http: HttpService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _SocketService: SocketService,
   ) { }
   gameIndex=0;
+  connection;
   translator = {
     0: "First",
     1: "Second",
@@ -54,6 +57,10 @@ export class GamecasterComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
+
+    });
+    this.connection = this._SocketService.matchChanged().subscribe(message => {
+      console.log("match changed: Message:", message);
 
     });
 

@@ -40,5 +40,11 @@ export class SocketService {
           .fromEvent("updated_count").pipe(
           map( data => data['numClicks'] ));
   }
+  matchChanged() {
+    console.log("match changed")
+    return this.socket
+        .fromEvent("game_change").pipe(
+        map( data => data  ));
+}
 
 }

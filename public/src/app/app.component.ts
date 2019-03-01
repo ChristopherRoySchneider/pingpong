@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     console.log("ngOnInit");
 
-    this.connection = this._SocketService.getMessage().subscribe(message => {
-      console.log("recieved getMessage in this.connection , pushed to AppComponent this.messages.  Message:", message);
-      this.messages.push(message);
+    this.connection = this._SocketService.matchChanged().subscribe(message => {
+      console.log("match changed: Message:", message);
+
     });
     this.connection2 = this._SocketService.countUpdated().subscribe(message => {
       console.log("recieved countUpdated message in this.connection.  Message:", message);

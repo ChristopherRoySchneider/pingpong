@@ -67,6 +67,16 @@ io.on('connection', function (socket) { //2
         console.log("heard new game event: ", data); //8 (note: this log will be on your server's terminal)
         io.emit('new_game_event', data);
     });
+    socket.on('match_change', function (data) {
+        
+        console.log("match_change: ", data); //8 (note: this log will be on your server's terminal)
+        io.emit('match_change', data);
+    });
+    socket.on('game_change', function (data) {
+        
+        console.log("game_change: ", data); //8 (note: this log will be on your server's terminal)
+        io.emit('game_change', data);
+    });
 
     socket.on('Pushing_reset_button', function (data) {
         numClicks = 0

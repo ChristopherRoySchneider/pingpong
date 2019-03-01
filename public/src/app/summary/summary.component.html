@@ -8,7 +8,7 @@
       <td class="text-center p-1">{{match.player1}}</td>
       <td class="text-center p-1">{{match.player2}}</td>
     </tr>
-    <tr *ngFor="let game_event of match.games[gameIndex].game_events.reverse()">
+    <tr *ngFor="let game_event of match.games[gameIndex].game_events">
         <td class="w-75 mr-auto p-1">{{game_event | json}}</td>
         <td class="text-center p-1">11</td>
         <td class="text-center p-1">9</td>

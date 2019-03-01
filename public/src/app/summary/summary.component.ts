@@ -34,10 +34,12 @@ export class SummaryComponent implements OnInit {
             console.log("game",game)
           if (message["gameid"] == game._id) {
             game.game_events.push(message["gameEvent"]);
+            game.game_events.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
           }
         });
           // console.log(this.game["game_events"]);
         });
+        this.match.games[this.gameIndex].game_events.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
   }
 
 }
