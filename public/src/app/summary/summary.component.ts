@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input } from "@angular/core";
 import { HttpService } from "../http.service";
 import { ActivatedRoute, Router, Params } from "@angular/router";

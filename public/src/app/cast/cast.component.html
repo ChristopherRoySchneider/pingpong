@@ -6,6 +6,9 @@
 <a href="#" (click)="sortByDate()"> Creation Date</a> |
 <a href="#" (click)="sortByName()">Name</a> |
 <a href="#" (click)="sortByType()">Type</a>
+<span class="create">
+  <a href="/new" class="ml-2 btn btn-primary">Add Match</a>
+</span>
 
 <div *ngIf="matches.length > 0" class="mb-3">
   <div *ngFor="let match of matches">
