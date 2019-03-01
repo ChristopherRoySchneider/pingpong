@@ -107,6 +107,8 @@ module.exports = {
     Match.findOne({ _id: req.params.matchid }, function(err, match) {
       match.player1 = req.body.player1;
       match.player2 = req.body.player2;
+      match.p1_games_won = req.body.p1_games_won;
+      match.p2_games_won = req.body.p2_games_won;
       match.winner = req.body.winner;
       match.match_complete = req.body.match_complete;
       match.save(function(err) {

@@ -21,6 +21,11 @@ export class SocketService {
     console.log("emitting :",msg )
     this.socket.emit("new_game_event", msg);
 }
+
+sendMatchUpdate(match){
+  console.log("emitting :",match )
+  this.socket.emit("game_change", match);
+}
      getMessage() {
         console.log("getting here")
         return this.socket
@@ -41,7 +46,7 @@ export class SocketService {
           map( data => data['numClicks'] ));
   }
   matchChanged() {
-    console.log("match changed")
+    console.log("subscribed to match changed")
     return this.socket
         .fromEvent("game_change").pipe(
         map( data => data  ));

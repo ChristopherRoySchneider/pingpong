@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { HttpService } from '../http.service';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: "app-edit-match",
@@ -14,7 +15,8 @@ export class EditMatchComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _httpService: HttpService
+    private _httpService: HttpService,
+    private _SocketService: SocketService
   ) {}
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class EditMatchComponent implements OnInit {
     });
   }
   putMatch(updatedMatch) {
+
     console.log(updatedMatch);
     let observable = this._httpService.putMatch(updatedMatch);
     observable.subscribe(data => {
@@ -36,6 +39,7 @@ export class EditMatchComponent implements OnInit {
         console.log(this.errors);
       } else {
         this.matchToEdit = {};
+        this._SocketService.sendMatchUpdate(updatedMatch);
         this._router.navigate([`/read/${updatedMatch._id}`]);
         this.errors = null;
       }

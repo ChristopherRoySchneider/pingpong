@@ -28,9 +28,15 @@ export class GamecasterComponent implements OnInit {
       this.getMatchByIdFromService(params['matchid']);
 
     });
-    this.connection = this._SocketService.matchChanged().subscribe(message => {
-      console.log("match changed: Message:", message);
-
+    this.connection = this._SocketService.matchChanged().subscribe(matchFromSockets => {
+      console.log("match changed: Message:", matchFromSockets);
+      if(this.match._id==matchFromSockets['_id']){
+      this.match.match_complete = matchFromSockets['match_complete'];
+      this.match.p1_games_won = matchFromSockets['p1_games_won'];
+      this.match.p2_games_won = matchFromSockets['p2_games_won'];
+      this.match.player1 = matchFromSockets['player1'];
+      this.match.player2 = matchFromSockets['player2'];
+      }
     });
 
 
