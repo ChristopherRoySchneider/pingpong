@@ -70,6 +70,10 @@ export class GctableComponent implements OnInit {
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
     this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
   }
+  ngOnChanges(){
+    this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
+    this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
+  }
 
   makeTable() {
     this.draw = SVG('drawing').size(640, 356)
