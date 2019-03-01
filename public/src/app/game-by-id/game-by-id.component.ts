@@ -69,7 +69,7 @@ export class GameByIdComponent implements OnInit {
       console.log("this.matchToEdit", this.match);
     });
   }
-  putGameEvent(matchid, gameid, newgameevent) {
+  postGameEvent(matchid, gameid, newgameevent) {
 
     newgameevent.createdAt= new Date().toISOString();
     newgameevent.updatedAt= new Date().toISOString();

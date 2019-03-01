@@ -6,7 +6,7 @@
 <!-- <p *ngFor="let game_event of game['game_events']">
   {{game_event | json}}
 </p> -->
-<form (submit)="putGameEvent(matchId,gameId,newGameEvent)">
+<form (submit)="postGameEvent(matchId,gameId,newGameEvent)">
   <div class="form-group">
     <label for="newGameEvent.p1_points_scored">Player1 Points Scored</label>
     <input
