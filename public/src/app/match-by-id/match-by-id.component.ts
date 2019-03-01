@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-match-by-id',
@@ -15,7 +16,8 @@ match: Match;
 errors=[];
   constructor(private _httpService: HttpService,
     private _route: ActivatedRoute,
-    private _router: Router,) {}
+    private _router: Router,
+    private _SocketService: SocketService) {}
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {

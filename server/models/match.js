@@ -20,6 +20,11 @@ module.exports = function () {
         y: {
             type: Number,
         },
+        scorer: {
+            type: String,
+            
+        },
+
     
     }, { timestamps: true });
 

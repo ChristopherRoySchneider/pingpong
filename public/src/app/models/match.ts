@@ -18,7 +18,8 @@ export interface Game {
 	game_events: Game_event[];
 	_id: string;
 	createdAt: string;
-	updatedAt: string;
+  updatedAt: string;
+  serving: string;
 }
 
 export interface Match {

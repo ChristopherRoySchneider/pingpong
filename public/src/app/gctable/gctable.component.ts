@@ -18,7 +18,7 @@ export class GctableComponent implements OnInit {
 
   @Input("match") match: Match;
   @Input("gameIndex") gameIndex: any;
-  
+
   scoreTypesArray = [
     'ace',
     'backhand',
@@ -64,7 +64,7 @@ export class GctableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
-    console.log("gameIndex",this.gameIndex)
+    // console.log("gameIndex",this.gameIndex)
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
     this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
   }
@@ -103,12 +103,16 @@ export class GctableComponent implements OnInit {
     this.gameId = this.getGameId(this.match);
     if (this.newGameEventObj.x < 320){
       this.newGameEventObj.p2_points_scored++;
-      
+
     } else {
       this.newGameEventObj.p1_points_scored++;
-      
+
     }
+    var updatedGame = this.match.games[this.gameIndex]
+    updatedGame.p1_points_scored = this.newGameEventObj.p1_points_scored;
+    updatedGame.p2_points_scored = this.newGameEventObj.p2_points_scored;
     this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
+    this.putGameData(this.match._id,updatedGame)
   }
 
   determineScorer(x: number): string {
@@ -128,7 +132,7 @@ export class GctableComponent implements OnInit {
   putGameEvent(matchId, gameId, newGameEvent) {
     newGameEvent.createdAt= new Date().toISOString();
     newGameEvent.updatedAt= new Date().toISOString();
-    console.log("Event emitted. Sending:", newGameEvent);
+    // console.log("Event emitted. Sending:", newGameEvent);
 
     var gameEventdata = {
       gameEvent: newGameEvent,
@@ -141,12 +145,35 @@ export class GctableComponent implements OnInit {
       gameId,
       newGameEvent
     ).subscribe(data => {
-      console.log("put game event", data);
+      // console.log("put game event", data);
 
       if (data["message"] == "Error") {
-        console.log("Error saving Match", data);
+        // console.log("Error saving Match", data);
       } else {
         this._socket.sendGameEvent(gameEventdata);
+      }
+    });
+  }
+  putGameData(matchId, updatedGame) {
+
+    console.log("sending updated game data:", updatedGame);
+
+    var gameData = {
+      updatedGame: updatedGame,
+      matchid: matchId,
+
+    };
+
+    this._http.putGame(
+      matchId,
+      updatedGame,
+    ).subscribe(data => {
+      console.log("put game :", data);
+
+      if (data["message"] == "Error") {
+        console.log("Error saving Game", data);
+      } else {
+        this._socket.sendGameChange(gameData);
       }
     });
   }
