@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
-import { tick } from '@angular/core/testing';
 import { SocketService } from '../socket.service';
 
 @Component({
@@ -19,14 +18,13 @@ export class GamecasterComponent implements OnInit {
   ) { }
 
   match: Match;
-  gameIndex=0;
+  gameIndex = 0;
   connection;
 
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
-
     });
     this.connection = this._SocketService.matchChanged().subscribe(matchFromSockets => {
       console.log("match changed: Message:", matchFromSockets);
@@ -38,8 +36,6 @@ export class GamecasterComponent implements OnInit {
       this.match.player2 = matchFromSockets['player2'];
       }
     });
-
-
   }
 
   getMatchByIdFromService(id: string) {
@@ -48,6 +44,8 @@ export class GamecasterComponent implements OnInit {
       this.gameIndex = this.match.games.length-1;
     });
   }
-
+  setGameIndex(idx:number){
+    this.gameIndex=idx;
+  }
 
 }
