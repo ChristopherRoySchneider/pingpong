@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { HttpService } from "../http.service";
 import { SocketService } from "../socket.service";
 import SVG from "svg.js";
-import { Match } from "../models/match";
+import { Match, Game } from "../models/match";
 
 @Component({
   selector: "app-gctable",
@@ -33,7 +33,14 @@ export class GctableComponent implements OnInit {
     "smash"
   ];
 
-  nonScoreTypesArray = ["New Game", "Let", "Service Change"];
+  nonScoreTypesArray = [
+    "Let",
+    "Service Change",
+    "P1 Wins Game",
+    "P2 Wins Game",
+    "P1 Wins Match",
+    "P2 Wins Match"
+  ];
 
   draw: any;
   table: any;
@@ -42,6 +49,9 @@ export class GctableComponent implements OnInit {
   ball: any;
   target: any;
   parent: any;
+
+  x: number;
+  y: number;
 
   gameId: any;
   errors: [];
@@ -65,6 +75,7 @@ export class GctableComponent implements OnInit {
     this.newGameEventObj.p2_points_scored = this.match.games[this.gameIndex][
       "p2_points_scored"
     ];
+    this.drawPreviousBalls(this.match.games[this.match.games.length-1]);
   }
   ngOnChanges(){
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
@@ -229,6 +240,27 @@ export class GctableComponent implements OnInit {
       }
     });
   }
+
+  drawPreviousBalls(game: Game) {
+    console.log('in the drawPreviousBalls function')
+    for (let gameEvent of game.game_events) {
+      if (gameEvent.x) {
+        this.drawBall(gameEvent.x, gameEvent.y);
+      }
+    }
+  }
+
+  drawBall(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    console.log(this.x, this.x);
+    this.ball = this.draw.circle(10).attr({
+      cx: this.x,
+      cy: this.y,
+      fill: '#fff'
+    });
+  }
+
   putMatch(updatedMatch) {
 
     console.log(updatedMatch);

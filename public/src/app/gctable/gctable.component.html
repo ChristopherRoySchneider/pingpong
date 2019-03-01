@@ -10,10 +10,6 @@
           <label for="newGameEventObj.type">Non-Scoring Game Events</label>
           <select name="newGameEventObj.type" [(ngModel)]="newGameEventObj.type" class="form-control">
             <option *ngFor="let type of nonScoreTypesArray" value="{{ type }}">{{ type }}</option>
-            <option>P1 Wins Game</option>
-            <option>P2 Wins Game</option>
-            <option>P1 Wins Match</option>
-            <option>P2 Wins Match</option>
           </select>
         </div>
         <div class="text-right">
