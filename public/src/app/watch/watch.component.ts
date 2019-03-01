@@ -14,17 +14,18 @@ export class WatchComponent implements OnInit {
   constructor(
     private _http: HttpService,
     private _route: ActivatedRoute,
-    private _socket: SocketService,
+    private _SocketService: SocketService,
   ) { }
 
   match: Match;
 gameIndex=0;
 gameEventConnection;
+matchUpdateConnection;
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
     });
-    this.gameEventConnection = this._socket
+    this.gameEventConnection = this._SocketService
       .subscribeGameEvent()
       .subscribe(message => {
         console.log('Recieved Game Event Message:', message);
@@ -34,6 +35,16 @@ gameEventConnection;
           }
         });
 
+    });
+    this.matchUpdateConnection = this._SocketService.matchChanged().subscribe(matchFromSockets => {
+      console.log("match changed: Message:", matchFromSockets);
+      if(this.match._id==matchFromSockets['_id']){
+      this.match.match_complete = matchFromSockets['match_complete'];
+      this.match.p1_games_won = matchFromSockets['p1_games_won'];
+      this.match.p2_games_won = matchFromSockets['p2_games_won'];
+      this.match.player1 = matchFromSockets['player1'];
+      this.match.player2 = matchFromSockets['player2'];
+      }
     });
   }
 
