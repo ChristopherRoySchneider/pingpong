@@ -16,18 +16,19 @@ export class GctableComponent implements OnInit {
     private _socket: SocketService
     ) { }
 
-  @Input() match: Match;
-
+  @Input("match") match: Match;
+  @Input("gameIndex") gameIndex: any;
+  
   scoreTypesArray = [
     'ace',
     'backhand',
     'block',
     'chop',
-    'drop shot',
+    'drop',
     'flick',
     'forehand',
     'hit',
-    'kill shot',
+    'kill',
     'lob',
     'loop',
     'out',
@@ -63,6 +64,9 @@ export class GctableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
+    console.log("gameIndex",this.gameIndex)
+    this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
+    this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
   }
 
   makeTable() {
@@ -97,15 +101,22 @@ export class GctableComponent implements OnInit {
 
   postAndEmitGameEvent() {
     this.gameId = this.getGameId(this.match);
+    if (this.newGameEventObj.x < 320){
+      this.newGameEventObj.p2_points_scored++;
+      
+    } else {
+      this.newGameEventObj.p1_points_scored++;
+      
+    }
     this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
   }
 
   determineScorer(x: number): string {
     if (x < 320){
-      this.newGameEventObj.p2_points_scored++;
+      // this.newGameEventObj.p2_points_scored++;
       return this.match.player2;
     } else {
-      this.newGameEventObj.p1_points_scored++;
+      // this.newGameEventObj.p1_points_scored++;
       return this.match.player1;
     }
   }

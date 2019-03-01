@@ -23,7 +23,6 @@ export class SummaryComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.gameEventConnection = this._SocketService
         .subscribeGameEvent()
         .subscribe(message => {
