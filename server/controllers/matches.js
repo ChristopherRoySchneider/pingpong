@@ -86,7 +86,7 @@ module.exports = {
       if (err) {
         console.log("something went wrong");
         return res.json({ message: "Error", error: err });
-      } else {
+      } else if( match_by_id) {
         // else console.log that we did well and then redirect to the root route
         console.log("got matches by name:", match_by_id);
         var game_to_return
