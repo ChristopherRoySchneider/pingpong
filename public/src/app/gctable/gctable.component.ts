@@ -59,7 +59,8 @@ export class GctableComponent implements OnInit {
     p2_points_scored: 0,
     type: '',
     x: 0,
-    y: 0
+    y: 0,
+    eventType: ''
   }
 
   ngOnInit() {
@@ -100,6 +101,7 @@ export class GctableComponent implements OnInit {
   }
 
   postAndEmitGameEvent() {
+    this.newGameEventObj.eventType = 'score'
     this.gameId = this.getGameId(this.match);
     if (this.newGameEventObj.x < 320){
       this.newGameEventObj.p2_points_scored++;
@@ -113,6 +115,14 @@ export class GctableComponent implements OnInit {
     updatedGame.p2_points_scored = this.newGameEventObj.p2_points_scored;
     this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
     this.putGameData(this.match._id,updatedGame)
+  }
+
+  submitNonScoringEvent(){
+    this.newGameEventObj.eventType = 'non-score'
+    this.newGameEventObj.x = null
+    this.newGameEventObj.y = null
+    this.newGameEventObj.scorer = null
+    this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj)
   }
 
   determineScorer(x: number): string {

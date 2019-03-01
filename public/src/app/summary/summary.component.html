@@ -10,7 +10,12 @@
       <td class="text-center p-1">{{match.player2}}</td>
     </tr>
     <tr *ngFor="let game_event of match.games[gameIndex].game_events">
-        <td class="w-75 mr-auto p-1">{{game_event.scorer}} scored on a {{game_event.type}} shot - {{ game_event.createdAt | date: 'h:mm:ss a'}}</td>
+        <td class="w-75 mr-auto p-1">
+          <span *ngIf="game_event.eventType == 'score'">
+            {{game_event.scorer}} scored on a {{game_event.type}} shot - {{ game_event.createdAt | date: 'h:mm:ss a'}}
+          </span>
+          <span *ngIf="game_event.eventType == 'non-score'">{{ game_event.type}}</span>
+        </td>
         <td class="text-center p-1">{{game_event.p1_points_scored}}</td>
         <td class="text-center p-1">{{game_event.p2_points_scored}}</td>
     </tr>

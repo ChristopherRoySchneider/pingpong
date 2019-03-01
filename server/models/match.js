@@ -22,10 +22,10 @@ module.exports = function () {
         },
         scorer: {
             type: String,
-            
         },
-
-    
+        eventType: {
+            type: String,
+        }
     }, { timestamps: true });
 
     const GameSchema = new mongoose.Schema({
