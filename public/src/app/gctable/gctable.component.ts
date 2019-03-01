@@ -127,13 +127,16 @@ export class GctableComponent implements OnInit {
     this.putGameData(this.match._id, updatedGame);
   }
 
+
   submitNonScoringEvent() {
     this.newGameEventObj.eventType = "non-score";
     this.newGameEventObj.x = null;
     this.newGameEventObj.y = null;
-    this.newGameEventObj.scorer = null;
-    if (this.newGameEventObj.type == "New Game") {
-      this.addGame(this.match["_id"]);
+    if (this.newGameEventObj.type == "Service Change"){
+      this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
+    }
+    if (this.newGameEventObj.type == "Let"){
+      this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
     }
     var updatedGame = this.match.games[this.gameIndex];
     this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
