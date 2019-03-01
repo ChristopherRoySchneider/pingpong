@@ -16,7 +16,7 @@ export class WatchComponent implements OnInit {
   ) { }
 
   match: Match;
-gameIndex=0;
+  gameIndex = 0;
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);

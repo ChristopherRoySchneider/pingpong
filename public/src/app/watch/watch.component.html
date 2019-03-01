@@ -1,17 +1,15 @@
 <div *ngIf="match" class="game">
   <app-glance [match]="match"></app-glance>
-  <app-table *ngIf="match" [match]="match"></app-table>
   <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
-  <form class="bg-white rounded-bottom p-3 mb-3">
-    <div class="form-group text-right">
-      <label for="gameIndex" class="mr-2">Select Game</label>
+  <div class="justify-content-end">
+    <form class="form-inline bg-white rounded-bottom p-3 mb-3 inconsolata">
+      <label for="gameIndex" class="mr-2">SELECT GAME:</label>
       <select name="gameIndex" [(ngModel)]="gameIndex" class="form-control-sm">
-        <option *ngFor="let game of match.games; let i=index" type="number" value="{{ i }}">Game {{ i+1 }}</option>
+        <option *ngFor="let game of match.games; let i=index" type="number" value="{{ i }}">GAME {{ i+1 }}</option>
       </select>
-    </div>
-    <div class="text-right">
-      <button class="btn btn-sm btn-primary" (click)="setGameIndex(gameIndex)">Submit</button>
-    </div>
-  </form>
+      <button class="btn btn-sm btn-primary ml-3" (click)="setGameIndex(gameIndex)">SUBMIT</button>
+    </form>
+  </div>
+  <app-table *ngIf="match" [match]="match"></app-table>
   <app-summary *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-summary>
 </div>
