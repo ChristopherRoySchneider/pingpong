@@ -20,7 +20,12 @@ module.exports = function () {
         y: {
             type: Number,
         },
-    
+        scorer: {
+            type: String,
+        },
+        eventType: {
+            type: String,
+        }
     }, { timestamps: true });
 
     const GameSchema = new mongoose.Schema({
