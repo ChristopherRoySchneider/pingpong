@@ -18,35 +18,45 @@ export class SocketService {
       this.socket.emit("Pushing_epic_button", msg);
   }
   sendGameEvent(msg){
-    console.log("emitting :",msg )
+    // console.log("emitting :",msg )
     this.socket.emit("new_game_event", msg);
+}
+sendGameChange(gameData){
+  console.log("emitting :",gameData )
+  this.socket.emit("game_change", gameData);
+}
+getGameChange() {
+  console.log("subscribed to game changes")
+  return this.socket
+      .fromEvent("game_change").pipe(
+      map( data => data));
 }
 
 sendMatchUpdate(match){
-  console.log("emitting :",match )
+  // console.log("emitting :",match )
   this.socket.emit("game_change", match);
 }
      getMessage() {
-        console.log("getting here")
+        // console.log("getting here")
         return this.socket
             .fromEvent("message").pipe(
             map( data => data['msg'] ));
     }
     subscribeGameEvent() {
-      console.log("subscribeGameEvent here")
+      // console.log("subscribeGameEvent here")
       return this.socket
           .fromEvent("new_game_event").pipe(
           map( data => data ));
   }
 
     countUpdated() {
-      console.log("epic button pushed")
+      // console.log("epic button pushed")
       return this.socket
           .fromEvent("updated_count").pipe(
           map( data => data['numClicks'] ));
   }
   matchChanged() {
-    console.log("subscribed to match changed")
+    // console.log("subscribed to match changed")
     return this.socket
         .fromEvent("game_change").pipe(
         map( data => data  ));

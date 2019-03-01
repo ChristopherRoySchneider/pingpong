@@ -138,9 +138,9 @@ module.exports = {
   },
 
   update_game: function(req, res) {
-    console.log("POST DATA", req.body, req.params);
+    console.log("Update Game POST DATA", req.body, req.params);
     Match.findOne({ _id: req.params.matchid }, function(finderr, match) {
-      console.log("in update_game",match)
+      // console.log("in update_game",match)
       if (finderr) {
         console.log("Post Errors:", finderr.errors);
         res.json({ message: "Error", finderr: err });
@@ -149,9 +149,10 @@ module.exports = {
             if (game._id == req.params.gameid) {
               game.winner = req.body.winner;
               game.game_complete = req.body.game_complete;
-              game.p1_points_scored = req.body.p1_points_scored
-              game.p2_points_scored = req.body.p2_points_scored
-              game.serving = req.body.serving
+              game.p1_points_scored = req.body.p1_points_scored;
+              game.p2_points_scored = req.body.p2_points_scored;
+              game.serving = req.body.serving;
+              
             }})
       match.save(function(err) {
         if (err) {
@@ -159,7 +160,7 @@ module.exports = {
           res.json({ message: "Error", error: err });
         } else {
           // else console.log that we did well and then redirect to the root route
-          console.log("successfully added a match!");
+          console.log("successfully updated game!");
           res.json({ message: "Success" });
         }
       });

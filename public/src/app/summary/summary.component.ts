@@ -26,10 +26,10 @@ export class SummaryComponent implements OnInit {
     this.gameEventConnection = this._SocketService
         .subscribeGameEvent()
         .subscribe(message => {
-          console.log("recieved gameevent  Message:", message);
+          // console.log("recieved gameevent  Message:", message);
           this.match.games.forEach(game => {
 
-            console.log("game",game)
+            // console.log("game",game)
 
             if (message['gameid'] == game._id && game.game_events.filter(function(e) { return e === message['gameEvent']; }).length==0) {
               game.game_events.push(message['gameEvent']);

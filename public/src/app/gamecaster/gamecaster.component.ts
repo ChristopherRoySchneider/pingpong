@@ -20,14 +20,14 @@ export class GamecasterComponent implements OnInit {
   match: Match;
   gameIndex = 0;
   connection;
-
+  gameUpdateConnection;
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
     });
     this.connection = this._SocketService.matchChanged().subscribe(matchFromSockets => {
-      console.log("match changed: Message:", matchFromSockets);
+      // console.log("match changed: Message:", matchFromSockets);
       if(this.match._id==matchFromSockets['_id']){
       this.match.match_complete = matchFromSockets['match_complete'];
       this.match.p1_games_won = matchFromSockets['p1_games_won'];
@@ -36,6 +36,18 @@ export class GamecasterComponent implements OnInit {
       this.match.player2 = matchFromSockets['player2'];
       }
     });
+    console.log("*** before")
+    this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
+      console.log("game changed: Message:", gameFromSockets);
+      this.match.games.forEach(game => {
+        if(game._id == gameFromSockets['updatedGame']._id){
+          console.log("***** got one:", gameFromSockets['updatedGame'])
+          game.game_complete = gameFromSockets['updatedGame'].game_complete
+        }
+      });
+
+    });
+    console.log("*** after")
   }
 
   getMatchByIdFromService(id: string) {
