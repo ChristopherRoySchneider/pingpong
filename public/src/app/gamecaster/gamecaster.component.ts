@@ -39,6 +39,7 @@ export class GamecasterComponent implements OnInit {
   getMatchByIdFromService(id: string) {
     this._http.getMatchById(id).subscribe(data => {
       this.match = data['data'][0];
+      this.gameIndex = this.match.games.length-1;
     });
   }
 
