@@ -5,9 +5,9 @@
   <div class="bg-white p-3 rounded-bottom mb-3">
       <div *ngFor="let rule of rulesArr">
           <b>{{rule.title}}</b>:
-          <div *ngFor="let key of rule.details">
+          <ul *ngFor="let key of rule.details">
             <li *ngIf="isString(key)">{{key}}</li>
-          </div>
+          </ul>
       </div>  
   </div>
 </div>
