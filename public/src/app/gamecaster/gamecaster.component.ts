@@ -21,6 +21,7 @@ export class GamecasterComponent implements OnInit {
   gameIndex = 0;
   connection;
   gameUpdateConnection;
+  errors: [];
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
@@ -58,6 +59,29 @@ export class GamecasterComponent implements OnInit {
   }
   setGameIndex(idx:number){
     this.gameIndex=idx;
+  }
+
+  addGame(matchId) {
+    let observable = this._http.addGame(matchId,{});
+    observable.subscribe(data => {
+      console.log('posted data', data);
+      if (data['message'] == 'Error') {
+        console.log('Error saving Match');
+        this.errors = data['error'];
+        console.log(this.errors);
+      } else {
+        this.getMatchByIdFromService1(this.match['_id']);
+        this.errors = null;
+      }
+    });
+  }
+  getMatchByIdFromService1(id?: string) {
+    let observable = this._http.getMatchById(id);
+    observable.subscribe(data => {
+      console.log('Got our match by id the new way!', data);
+      this.match = data['data'][0];
+      console.log('this.matchToEdit', this.match);
+    });
   }
 
 }
