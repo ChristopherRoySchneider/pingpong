@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SocketService } from "../socket.service";
 import SVG from 'svg.js';
+import { Match } from '../models/match';
 
 @Component({
   selector: 'app-table',
@@ -8,10 +10,16 @@ import SVG from 'svg.js';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _socket: SocketService ) { }
 
-  clientX = 0;
-  clientY = 0;
+  @Input() match: Match
+  game: any;
+  gameEvent: any
+
+  gameEventConnection: any;
+
+  x = 0;
+  y = 0;
   draw: any;
   table: any;
   centerLine: any;
@@ -22,6 +30,18 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
+    this.game = this.match.games[this.match.games.length-1];
+    this.gameEventConnection = this._socket
+      .subscribeGameEvent()
+      .subscribe(message => {
+        console.log('Recieved Game Event Message:', message);
+        if (message['gameid'] == this.game._id) {
+          this.game.game_events.push(message['gameEvent']);
+        }
+        console.log(this.game['game_events']);
+        this.gameEvent = this.game.game_events[this.game.game_events.length-1];
+        this.drawBall(this.gameEvent.x, this.gameEvent.y);
+    });
   }
 
   makeTable() {
@@ -41,15 +61,13 @@ export class TableComponent implements OnInit {
     })
   }
 
-  drawBall(event: MouseEvent) {
-    this.target = <HTMLInputElement>event.target;
-    this.parent = this.target.getBoundingClientRect();
-    this.clientX = event.clientX - this.parent.left;
-    this.clientY = event.clientY - this.parent.top;
-    console.log(this.clientX, this.clientY);
+  drawBall(x: number, y: number) {
+    this.x = this.gameEvent.x;
+    this.y = this.gameEvent.y;
+    console.log(this.x, this.x);
     this.ball = this.draw.circle(10).attr({
-      cx: this.clientX,
-      cy: this.clientY,
+      cx: this.x,
+      cy: this.y,
       fill: '#fff'
     });
   }

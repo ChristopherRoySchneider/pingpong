@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from "@angular/router";
+import { HttpService } from '../http.service';
+import { Match } from '../models/match';
 
 @Component({
   selector: 'app-watch',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WatchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _http: HttpService,
+    private _route: ActivatedRoute
+  ) { }
 
+  match: Match;
+gameIndex=0;
   ngOnInit() {
+    this._route.params.subscribe((params: Params) => {
+      this.getMatchByIdFromService(params['matchid']);
+    });
+  }
+
+  getMatchByIdFromService(id: string) {
+    this._http.getMatchById(id).subscribe(data => {
+      this.match = data['data'][0];
+    });
   }
 
 }

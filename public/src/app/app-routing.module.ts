@@ -13,7 +13,6 @@ import { GameByIdComponent } from './game-by-id/game-by-id.component';
 import { CastComponent } from './cast/cast.component';
 
 const routes: Routes = [
-  { path: 'watch', component: WatchComponent },
   { path: 'gamecast/:matchid', component: GamecasterComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'rules', component: RulesComponent },
@@ -24,6 +23,8 @@ const routes: Routes = [
   { path: 'edit/:matchid', component: EditMatchComponent },
   { path: 'read/:matchid', component: MatchByIdComponent },
   { path: 'read/:matchid/games/:gameid', component: GameByIdComponent },
+  { path: 'view/:matchid', component: WatchComponent },
+
   // redirect to /alpha if there is nothing in the url
   { path: '', pathMatch: 'full', redirectTo:"/home" },
   // the ** will catch anything that did not match any of the above routes

@@ -1,40 +1,21 @@
-<div class="row">
-  <div class="col">
-    <h3>Pingpong Matches</h3>
-    <div class="row">
-      <div class="col">
-        <h5 class="d-inline-block">Sort By:</h5>
+<div class="p-3 rounded-bottom header w-840 text-center">
+  <h3 class="text-white m-0">Ping-Pong Matches</h3>
+</div>
 
-        <button class="ml-2 btn btn-primary" (click)="sortByDate()">
-          Creation Date
-        </button>
+<p class="d-inline-block mt-3 mb-2">Sort By:</p>
+<a href="#" (click)="sortByDate()"> Creation Date</a> |
+<a href="#" (click)="sortByName()">Name</a> |
+<a href="#" (click)="sortByType()">Type</a>
 
-        <button class="ml-2 btn btn-primary" (click)="sortByName()">
-          Name
-        </button>
-
-        <button class="ml-2 btn btn-primary" (click)="sortByType()">
-          Type
-        </button>
-      </div>
-    </div>
-
-    <div *ngIf="matches.length > 0">
-      <div *ngFor="let match of matches">
-        <div class="card mt-2 mb-2">
-          <div class="card-body">
-            <div class="container">
-            <div class="playerinfo">
-              <h5 class="card-title">Player 1: {{ match.player1 }}</h5>
-              <h5 class="card-title">Player 2: {{ match.player2 }}</h5>
-            </div>
-            <div class="datetime">
-              <p>{{ match.createdAt | date: 'E, M/d/yy'}}</p>
-              <p>{{ match.createdAt | date: 'shortTime'}}</p>
-            </div>
-          </div>
-            <a class=" btn btn-primary" href="/read/{{ match._id }}">View</a>
-          </div>
+<div *ngIf="matches.length > 0" class="mb-3">
+  <div *ngFor="let match of matches">
+    <div class="card mt-2 mb-2">
+      <h5 class="card-header">{{ match.player1 }} vs. {{ match.player2 }}</h5>
+      <div class="card-body">
+        <p class="card-text">{{ match.player1 }}: {{ match.p1_games_won }} - {{ match.player2 }}: {{ match.p2_games_won }}</p>
+        <p class="card-text">Match created {{ match.createdAt | date: 'EEEE, MMMM d, y'}} at {{ match.createdAt | date: 'shortTime'}}.</p>
+        <div class="text-right">
+          <a class=" btn btn-primary" href="/view/{{ match._id }}">View Match</a>
         </div>
       </div>
     </div>
