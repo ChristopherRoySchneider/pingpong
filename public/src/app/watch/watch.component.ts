@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from '../http.service';
 import { Match } from '../models/match';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-watch',
@@ -12,14 +13,27 @@ export class WatchComponent implements OnInit {
 
   constructor(
     private _http: HttpService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _socket: SocketService,
   ) { }
 
   match: Match;
 gameIndex=0;
+gameEventConnection;
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
+    });
+    this.gameEventConnection = this._socket
+      .subscribeGameEvent()
+      .subscribe(message => {
+        console.log('Recieved Game Event Message:', message);
+        this.match['games'].forEach(game => {
+          if (message['gameid'] == game._id && game.game_events.filter(function(e) { return e === message['gameEvent']; }).length==0) {
+            game.game_events.push(message['gameEvent']);
+          }
+        });
+
     });
   }
 

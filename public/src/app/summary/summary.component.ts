@@ -32,10 +32,16 @@ export class SummaryComponent implements OnInit {
           this.match.games.forEach(game => {
 
             console.log("game",game)
-          if (message["gameid"] == game._id) {
-            game.game_events.push(message["gameEvent"]);
+
+            if (message['gameid'] == game._id && game.game_events.filter(function(e) { return e === message['gameEvent']; }).length==0) {
+              game.game_events.push(message['gameEvent']);
+
+            }
             game.game_events.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
-          }
+          // if (message["gameid"] == game._id) {
+          //   game.game_events.push(message["gameEvent"]);
+          //   game.game_events.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+          // }
         });
           // console.log(this.game["game_events"]);
         });
