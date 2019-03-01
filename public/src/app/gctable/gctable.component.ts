@@ -102,8 +102,10 @@ export class GctableComponent implements OnInit {
 
   determineScorer(x: number): string {
     if (x < 320){
+      this.newGameEventObj.p2_points_scored++;
       return this.match.player2;
     } else {
+      this.newGameEventObj.p1_points_scored++;
       return this.match.player1;
     }
   }
