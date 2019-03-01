@@ -44,7 +44,9 @@ export class TableComponent implements OnInit {
 
         console.log(this.game['game_events']);
         this.gameEvent = this.game.game_events[this.game.game_events.length-1];
-        this.drawBall(this.gameEvent.x, this.gameEvent.y);
+        if (this.gameEvent.x) {
+          this.drawBall(this.gameEvent.x, this.gameEvent.y);
+        }
     });
   }
 
@@ -68,7 +70,9 @@ export class TableComponent implements OnInit {
   drawPreviousBalls(game: Game) {
     console.log('in the drawPreviousBalls function')
     for (let gameEvent of game.game_events) {
-      this.drawBall(gameEvent.x, gameEvent.y);
+      if (gameEvent.x) {
+        this.drawBall(gameEvent.x, gameEvent.y);
+      }
     }
   }
 
