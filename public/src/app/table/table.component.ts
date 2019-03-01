@@ -35,9 +35,11 @@ export class TableComponent implements OnInit {
       .subscribeGameEvent()
       .subscribe(message => {
         console.log('Recieved Game Event Message:', message);
-        if (message['gameid'] == this.game._id) {
+
+        if (message['gameid'] == this.game._id && this.game.game_events.filter(function(e) { return e === message['gameEvent']; }).length==0) {
           this.game.game_events.push(message['gameEvent']);
         }
+
         console.log(this.game['game_events']);
         this.gameEvent = this.game.game_events[this.game.game_events.length-1];
         this.drawBall(this.gameEvent.x, this.gameEvent.y);
