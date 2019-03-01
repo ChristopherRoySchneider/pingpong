@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="match" class="row">
   <div class="col">
     <p>Player 1: {{match['player1']}}</p>
     <p>Player 2: {{match['player2']}}</p>
@@ -6,7 +6,7 @@
     <p>match complete: {{match['match_complete']}}</p>
     <div *ngFor="let game of match.games">
 
-      <a href="view/{{matchId}}/games/{{game._id}}">Game</a>
+      <a href="read/{{matchId}}/games/{{game._id}}">Game</a>
     </div>
 
 

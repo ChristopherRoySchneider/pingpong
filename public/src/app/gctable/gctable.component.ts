@@ -54,8 +54,8 @@ export class GctableComponent implements OnInit {
 
   newGameEventObj = {
     scorer: '',
-    p1Points: 0,
-    p2Points: 0,
+    p1_points_scored: 0,
+    p2_points_scored: 0,
     type: '',
     x: 0,
     y: 0
@@ -102,8 +102,10 @@ export class GctableComponent implements OnInit {
 
   determineScorer(x: number): string {
     if (x < 320){
+      this.newGameEventObj.p2_points_scored++;
       return this.match.player2;
     } else {
+      this.newGameEventObj.p1_points_scored++;
       return this.match.player1;
     }
   }
@@ -113,6 +115,8 @@ export class GctableComponent implements OnInit {
   }
 
   putGameEvent(matchId, gameId, newGameEvent) {
+    newGameEvent.createdAt= new Date().toISOString();
+    newGameEvent.updatedAt= new Date().toISOString();
     console.log("Event emitted. Sending:", newGameEvent);
 
     var gameEventdata = {
@@ -120,7 +124,7 @@ export class GctableComponent implements OnInit {
       matchid: matchId,
       gameid: gameId
     };
-    
+
     this._http.postGameEvent(
       matchId,
       gameId,

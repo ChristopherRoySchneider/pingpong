@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="matchToEdit" class="row">
   <div class="col">
       <h1>Edit Match</h1>
 
@@ -29,11 +29,53 @@
               [(ngModel)]="matchToEdit['player2']"
             />
           </div>
+          <div class="form-group">
+              <label for="matchToEdit.winner">Winner</label>
+              <input
+                class="form-control"
+                type="text"
+                id="matchToEdit.winner"
+                name="matchToEdit.winner"
+                [(ngModel)]="matchToEdit['winner']"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="matchToEdit.match_complete">match_complete</label>
+              <input
+                class="form-control"
+                type="text"
+                id="matchToEdit.match_complete"
+                name="matchToEdit.match_complete"
+                [(ngModel)]="matchToEdit['match_complete']"
+              />
+            </div>
+
+            <div class="form-group">
+                <label for="matchToEdit.p1_games_won">p1_games_won</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="matchToEdit.p1_games_won"
+                  name="matchToEdit.p1_games_won"
+                  [(ngModel)]="matchToEdit['p1_games_won']"
+                />
+              </div>
+              <div class="form-group">
+                  <label for="matchToEdit.p2_games_won">p2_games_won</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="matchToEdit.p2_games_won"
+                    name="matchToEdit.p2_games_won"
+                    [(ngModel)]="matchToEdit['p2_games_won']"
+                  />
+                </div>
 
         <input class="btn btn-primary" type="submit" value="Edit Match" />
         <a href="/cast" class="ml-2 btn btn-primary">Cancel</a>
       </form>
-      <!-- <p>{{ matchToEdit | json }}</p> -->
+      <p>{{ matchToEdit | json }}</p>
   </div>
 </div>
 

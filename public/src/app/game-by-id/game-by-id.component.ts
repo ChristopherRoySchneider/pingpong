@@ -20,7 +20,10 @@ export class GameByIdComponent implements OnInit {
   newGameEvent = {
     p1_points_scored: 0,
     p2_points_scored: 0,
-    type: "game_start"
+    type: "game_start",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+
   };
   gameEventConnection;
 
@@ -66,7 +69,10 @@ export class GameByIdComponent implements OnInit {
       console.log("this.matchToEdit", this.match);
     });
   }
-  putGameEvent(matchid, gameid, newgameevent) {
+  postGameEvent(matchid, gameid, newgameevent) {
+
+    newgameevent.createdAt= new Date().toISOString();
+    newgameevent.updatedAt= new Date().toISOString();
     console.log("button pushed, sending:", newgameevent);
     let observable = this._httpService.postGameEvent(
       matchid,
@@ -77,6 +83,7 @@ export class GameByIdComponent implements OnInit {
       gameEvent: newgameevent,
       matchid: matchid,
       gameid: gameid
+
     };
     observable.subscribe(data => {
       console.log("put game event", data);
