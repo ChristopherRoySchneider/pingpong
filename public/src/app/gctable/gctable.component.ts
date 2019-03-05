@@ -75,11 +75,12 @@ export class GctableComponent implements OnInit {
     this.newGameEventObj.p2_points_scored = this.match.games[this.gameIndex][
       "p2_points_scored"
     ];
-    this.drawPreviousBalls(this.match.games[this.match.games.length-1]);
+    this.drawPreviousBalls(this.match.games[this.gameIndex]);
   }
   ngOnChanges(){
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
     this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
+    this.drawPreviousBalls(this.match.games[this.gameIndex]);
   }
 
   makeTable() {

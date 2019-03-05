@@ -61,9 +61,7 @@ export class GamecasterComponent implements OnInit {
       this.gameIndex = this.match.games.length - 1;
     });
   }
-  setGameIndex(idx: number) {
-    this.gameIndex = idx;
-  }
+
 
   addGame(matchId) {
     let observable = this._http.addGame(matchId, {});
