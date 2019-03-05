@@ -1,23 +1,23 @@
 body {
-    background-color: #ffe9a7;
-    font-family: 'Kanit', sans-serif;
+    /* background-color: #ffe9a7; */
+    font-family: 'Roboto', sans-serif;
 }
 
-nav {
+/* nav {
     background-color: #022b6d;
-}
+} */
 
-nav p {
+/* nav p {
     color: #ffe9a7;
-}
+} */
 
-nav a {
+/* nav a {
     color: white;
-}
+} */
 
-nav a:hover {
+/* nav a:hover {
     color: #ffe9a7;
-}
+} */
 
 .game {
     width: 840px;
@@ -29,7 +29,8 @@ table {
 }
 
 .header {
-    background-color: #022b6d;
+    background-color: #343a40;
+    color: #f8f9fa;
 }
 
 .w-840 {
