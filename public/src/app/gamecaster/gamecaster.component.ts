@@ -26,7 +26,20 @@ export class GamecasterComponent implements OnInit {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params["matchid"]);
     });
-    // console.log("*** before")
+
+    this.connection = this._SocketService.matchChanged().subscribe(matchFromSockets => {
+      // console.log("match changed: Message:", matchFromSockets);
+      if (this.match._id == matchFromSockets["_id"]) {
+        this.match.match_complete = matchFromSockets["match_complete"];
+        this.match.p1_games_won = matchFromSockets["p1_games_won"];
+        this.match.p2_games_won = matchFromSockets["p2_games_won"];
+        this.match.player1 = matchFromSockets["player1"];
+        this.match.player2 = matchFromSockets["player2"];
+
+      }
+
+    });
+
     this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
       console.log("game changed: Message:", gameFromSockets);
       this.match.games.forEach(game => {
@@ -37,24 +50,8 @@ export class GamecasterComponent implements OnInit {
         }
       }
       });
-
-      this.connection = this._SocketService
-      .matchChanged()
-      .subscribe(matchFromSockets => {
-        // console.log("match changed: Message:", matchFromSockets);
-        if (this.match._id == matchFromSockets["_id"]) {
-          this.match.match_complete = matchFromSockets["match_complete"];
-          this.match.p1_games_won = matchFromSockets["p1_games_won"];
-          this.match.p2_games_won = matchFromSockets["p2_games_won"];
-          this.match.player1 = matchFromSockets["player1"];
-          this.match.player2 = matchFromSockets["player2"];
-
-        }
-
-      });
-
     });
-    // console.log("*** after")
+
   }
   ngOnDestroy() {
     this.connection.unsubscribe();
