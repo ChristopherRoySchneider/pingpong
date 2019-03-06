@@ -26,7 +26,19 @@ export class GamecasterComponent implements OnInit {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params["matchid"]);
     });
-    this.connection = this._SocketService
+    // console.log("*** before")
+    this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
+      console.log("game changed: Message:", gameFromSockets);
+      this.match.games.forEach(game => {
+        if(gameFromSockets){
+        if(game._id == gameFromSockets['updatedGame']._id){
+          console.log("***** got one:", gameFromSockets['updatedGame'])
+          game.game_complete = gameFromSockets['updatedGame'].game_complete
+        }
+      }
+      });
+
+      this.connection = this._SocketService
       .matchChanged()
       .subscribe(matchFromSockets => {
         // console.log("match changed: Message:", matchFromSockets);
@@ -36,23 +48,17 @@ export class GamecasterComponent implements OnInit {
           this.match.p2_games_won = matchFromSockets["p2_games_won"];
           this.match.player1 = matchFromSockets["player1"];
           this.match.player2 = matchFromSockets["player2"];
+
         }
+
       });
 
-    this.gameUpdateConnection = this._SocketService
-      .getGameChange()
-      .subscribe(gameFromSockets => {
-        console.log("game changed: Message:", gameFromSockets);
-        this.match.games.forEach(game => {
-          if (game && gameFromSockets["updatedGame"]) {
-            if (game._id == gameFromSockets["updatedGame"]._id) {
-              console.log("***** got one:", gameFromSockets["updatedGame"]);
-              game.game_complete = gameFromSockets["updatedGame"].game_complete;
-            }
-          }
-        });
-      });
-
+    });
+    // console.log("*** after")
+  }
+  ngOnDestroy() {
+    this.connection.unsubscribe();
+    this.gameUpdateConnection.unsubscribe();
   }
 
   getMatchByIdFromService(id: string) {

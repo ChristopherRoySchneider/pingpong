@@ -31,7 +31,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
-    this.game = this.match.games[this.match.games.length-1];
+    this.game = this.match.games[this.gameIndex];
     this.drawPreviousBalls(this.game);
     this.gameEventConnection = this._socket
       .subscribeGameEvent()
@@ -48,6 +48,13 @@ export class TableComponent implements OnInit {
           this.drawBall(this.gameEvent.x, this.gameEvent.y);
         }
     });
+  }
+  ngOnChanges() {
+    this.game = this.match.games[this.gameIndex];
+    this.drawPreviousBalls(this.game);
+  }
+  ngOnDestroy() {
+    this.gameEventConnection.unsubscribe();
   }
 
   makeTable() {

@@ -25,6 +25,7 @@ gameUpdateConnection;
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.getMatchByIdFromService(params['matchid']);
+
     });
     this.gameEventConnection = this._SocketService
       .subscribeGameEvent()
@@ -49,21 +50,24 @@ gameUpdateConnection;
       }
     });
 
-    console.log("*** before")
+    // console.log("*** before")
     this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
       console.log("game changed: Message:", gameFromSockets);
       this.match.games.forEach(game => {
+        if(gameFromSockets){
         if(game._id == gameFromSockets['updatedGame']._id){
           console.log("***** got one:", gameFromSockets['updatedGame'])
           game.game_complete = gameFromSockets['updatedGame'].game_complete
           game.p1_points_scored = gameFromSockets['updatedGame'].p1_points_scored
           game.p2_points_scored = gameFromSockets['updatedGame'].p2_points_scored
           game.serving = gameFromSockets['updatedGame'].serving
-        }
+        }}
       });
 
     });
-    console.log("*** after")
+    // console.log("*** after")
+
+
   }
 
   getMatchByIdFromService(id: string) {
@@ -72,8 +76,6 @@ gameUpdateConnection;
       this.gameIndex = this.match.games.length-1;
     });
   }
-  setGameIndex(idx:number){
-    this.gameIndex=idx;
-  }
+
 
 }

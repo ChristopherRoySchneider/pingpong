@@ -54,6 +54,7 @@ export class GctableComponent implements OnInit {
   y: number;
 
   gameId: any;
+  updatedGame: any;
   errors: [];
 
   newGameEventObj = {
@@ -76,11 +77,15 @@ export class GctableComponent implements OnInit {
       "p2_points_scored"
     ];
     this.drawPreviousBalls(this.match.games[this.gameIndex]);
+    this.updatedGame = this.match.games[this.gameIndex];
   }
   ngOnChanges(){
+    console.log("this.gameIndex",this.gameIndex)
+    this.updatedGame = this.match.games[this.gameIndex];
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
     this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
-    this.drawPreviousBalls(this.match.games[this.gameIndex]);
+    if(this.draw){    this.drawPreviousBalls(this.match.games[this.gameIndex]);}
+
   }
 
   makeTable() {
@@ -115,44 +120,47 @@ export class GctableComponent implements OnInit {
 
   postAndEmitGameEvent() {
     this.newGameEventObj.eventType = "score";
-    this.gameId = this.getGameId(this.match);
+
     if (this.newGameEventObj.x < 320) {
       this.newGameEventObj.p2_points_scored++;
     } else {
       this.newGameEventObj.p1_points_scored++;
     }
-    var updatedGame = this.match.games[this.gameIndex];
-    updatedGame.p1_points_scored = this.newGameEventObj.p1_points_scored;
-    updatedGame.p2_points_scored = this.newGameEventObj.p2_points_scored;
-    this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
-    this.putGameData(this.match._id, updatedGame);
+
+    this.updatedGame.p1_points_scored = this.newGameEventObj.p1_points_scored;
+    this.updatedGame.p2_points_scored = this.newGameEventObj.p2_points_scored;
+    this.putGameEvent(this.match._id, this.updatedGame._id, this.newGameEventObj);
+    this.putGameData(this.match._id, this.updatedGame);
   }
 
 
   submitNonScoringEvent() {
+    console.log("submitting non-scoring event")
     this.newGameEventObj.eventType = "non-score";
     this.newGameEventObj.x = null;
     this.newGameEventObj.y = null;
+
     if (this.newGameEventObj.type == "Service Change"){
+      console.log("service change",this.newGameEventObj)
       this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
     }
     if (this.newGameEventObj.type == "Let"){
       this.newGameEventObj.type += " - " + this.newGameEventObj.scorer;
     }
-    var updatedGame = this.match.games[this.gameIndex];
-    this.putGameEvent(this.match._id, this.gameId, this.newGameEventObj);
-    if (this.newGameEventObj.type == "P1 Wins Game") {
-      updatedGame.winner = "p1";
-      updatedGame.game_complete = true;
 
-      this.putGameData(this.match._id, updatedGame);
+    this.putGameEvent(this.match._id, this.updatedGame._id, this.newGameEventObj);
+    if (this.newGameEventObj.type == "P1 Wins Game") {
+      this.updatedGame.winner = "p1";
+      this.updatedGame.game_complete = true;
+
+      this.putGameData(this.match._id, this.updatedGame);
       this.match.p1_games_won +=1;
       this.putMatch(this.match)
     }
     if (this.newGameEventObj.type == "P2 Wins Game") {
-      updatedGame.winner = "p2";
-      updatedGame.game_complete = true;
-      this.putGameData(this.match._id, updatedGame);
+      this.updatedGame.winner = "p2";
+      this.updatedGame.game_complete = true;
+      this.putGameData(this.match._id, this.updatedGame);
       this.match.p2_games_won +=1;
       this.putMatch(this.match)
     }
@@ -201,9 +209,7 @@ export class GctableComponent implements OnInit {
     }
   }
 
-  getGameId(match: Match) {
-    return match.games[match.games.length - 1]._id;
-  }
+
 
   putGameEvent(matchId, gameId, newGameEvent) {
     newGameEvent.createdAt = new Date().toISOString();
@@ -246,7 +252,7 @@ export class GctableComponent implements OnInit {
   }
 
   drawPreviousBalls(game: Game) {
-    console.log('in the drawPreviousBalls function')
+    // console.log('in the drawPreviousBalls function')
     for (let gameEvent of game.game_events) {
       if (gameEvent.x) {
         this.drawBall(gameEvent.x, gameEvent.y);
@@ -257,7 +263,7 @@ export class GctableComponent implements OnInit {
   drawBall(x: number, y: number) {
     this.x = x;
     this.y = y;
-    console.log(this.x, this.x);
+    // console.log(this.x, this.x);
     this.ball = this.draw.circle(10).attr({
       cx: this.x,
       cy: this.y,
