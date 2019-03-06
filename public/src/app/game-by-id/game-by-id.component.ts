@@ -53,6 +53,11 @@ export class GameByIdComponent implements OnInit {
         });
     });
   }
+
+  ngOnDestroy() {
+    this.gameEventConnection.unsubscribe()
+
+  }
   getMatchByIdFromService(id?: string) {
     let observable = this._httpService.getMatchById(id);
     observable.subscribe(data => {

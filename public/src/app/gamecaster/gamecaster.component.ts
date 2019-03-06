@@ -37,18 +37,23 @@ export class GamecasterComponent implements OnInit {
       this.match.player2 = matchFromSockets['player2'];
       }
     });
-    console.log("*** before")
+    // console.log("*** before")
     this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
       console.log("game changed: Message:", gameFromSockets);
       this.match.games.forEach(game => {
+        if(gameFromSockets){
         if(game._id == gameFromSockets['updatedGame']._id){
           console.log("***** got one:", gameFromSockets['updatedGame'])
           game.game_complete = gameFromSockets['updatedGame'].game_complete
         }
+      }
       });
 
     });
-    console.log("*** after")
+    // console.log("*** after")
+  }
+  ngOnDestroy() {
+    this.connection.unsubscribe();
   }
 
   getMatchByIdFromService(id: string) {
