@@ -54,7 +54,7 @@ gameUpdateConnection;
     this.gameUpdateConnection = this._SocketService.getGameChange().subscribe(gameFromSockets => {
       console.log("game changed: Message:", gameFromSockets);
       this.match.games.forEach(game => {
-        if(gameFromSockets){
+        if(gameFromSockets['updatedGame']){
         if(game._id == gameFromSockets['updatedGame']._id){
           console.log("***** got one:", gameFromSockets['updatedGame'])
           game.game_complete = gameFromSockets['updatedGame'].game_complete

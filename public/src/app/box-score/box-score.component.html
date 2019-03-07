@@ -10,22 +10,22 @@
       <td class="text-center p-1">G5</td>
     </tr>
     <tr class="justify-content-end">
-      <td class="mr-auto w-50 p-1">{{ matchData.player1.toUpperCase() }}</td>
-      <td class="text-center p-1">{{ p1GamesWon }}</td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[0]">{{ matchData.games[0].p1_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[1]">{{ matchData.games[1].p1_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[2]">{{ matchData.games[2].p1_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[3]">{{ matchData.games[3].p1_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[4]">{{ matchData.games[4].p1_points_scored }}</div></td>
+      <td class="mr-auto w-50 p-1">{{ match.player1.toUpperCase() }}</td>
+      <td class="text-center p-1">{{match.p1_games_won }}</td>
+      <td class="text-center p-1"><div *ngIf="match.games[0]">{{ match.games[0].p1_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[1]">{{ match.games[1].p1_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[2]">{{ match.games[2].p1_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[3]">{{ match.games[3].p1_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[4]">{{ match.games[4].p1_points_scored }}</div></td>
     </tr>
     <tr class="justify-content-end">
-      <td class="mr-auto w-50 p-1">{{ matchData.player2.toUpperCase() }}</td>
-      <td class="text-center p-1">{{ p2GamesWon }}</td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[0]">{{ matchData.games[0].p2_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[1]">{{ matchData.games[1].p2_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[2]">{{ matchData.games[2].p2_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[3]">{{ matchData.games[3].p2_points_scored }}</div></td>
-      <td class="text-center p-1"><div *ngIf="matchData.games[4]">{{ matchData.games[4].p2_points_scored }}</div></td>
+      <td class="mr-auto w-50 p-1">{{ match.player2.toUpperCase() }}</td>
+      <td class="text-center p-1">{{ match.p2_games_won}}</td>
+      <td class="text-center p-1"><div *ngIf="match.games[0]">{{ match.games[0].p2_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[1]">{{ match.games[1].p2_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[2]">{{ match.games[2].p2_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[3]">{{ match.games[3].p2_points_scored }}</div></td>
+      <td class="text-center p-1"><div *ngIf="match.games[4]">{{ match.games[4].p2_points_scored }}</div></td>
     </tr>
   </table>
 </div>

@@ -10,14 +10,19 @@ export class BoxScoreComponent implements OnInit {
   constructor() { }
   p1GamesWon=0;
   p2GamesWon=0;
-  @Input() matchData: any;
+  @Input("match") match: any;
 
   ngOnInit() {
     this.countGamesWon();
   }
+  ngOnChanges() {this.countGamesWon();
+
+  }
   countGamesWon(){
-    for (let game of this.matchData.games) {
-      console.log("*********", game.winner)
+    this.p1GamesWon=0;
+    this.p2GamesWon=0;
+    for (let game of this.match.games) {
+
       if (game.winner === "p1") {
         this.p1GamesWon++;
       }
@@ -26,6 +31,6 @@ export class BoxScoreComponent implements OnInit {
       }
     }
   }
-  
+
 
 }

@@ -1,6 +1,6 @@
 <div *ngIf="match" class="game">
   <app-glance [match]="match"></app-glance>
-  <app-box-score *ngIf="match" [matchData]="match"></app-box-score>
+  <app-box-score *ngIf="match" [match]="match"></app-box-score>
   <div class="justify-content-end">
     <form class="form-inline bg-white rounded-bottom p-3 mb-3 inconsolata">
       <label for="gameIndex" class="mr-2">SELECT GAME:</label>

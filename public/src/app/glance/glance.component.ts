@@ -24,10 +24,19 @@ export class GlanceComponent implements OnInit, DoCheck {
   }
 
   gameIndexString: string;
+  p1GamesWon=0;
+  p2GamesWon=0;
 
   @Input() match: Match;
-  
+
   ngOnInit() {
+    this.countGamesWon();
+  }
+  ngOnChanges(): void {
+    this.countGamesWon();
+    if (this.match) {
+      this.gameIndexToString(this.match.games.length-1)
+    }
   }
 
   ngDoCheck()	{
@@ -38,6 +47,19 @@ export class GlanceComponent implements OnInit, DoCheck {
 
   gameIndexToString(index: number) {
     this.gameIndexString = this.translator[index];
+  }
+  countGamesWon(){
+    this.p1GamesWon=0;
+    this.p2GamesWon=0;
+    for (let game of this.match.games) {
+
+      if (game.winner === "p1") {
+        this.p1GamesWon++;
+      }
+      else if (game.winner === "p2") {
+        this.p2GamesWon++;
+      }
+    }
   }
 
 }
