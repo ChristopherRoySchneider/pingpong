@@ -86,12 +86,14 @@ export class TableComponent implements OnInit {
   drawBall(x: number, y: number) {
     this.x = x;
     this.y = y;
-    console.log(this.x, this.x);
+    // console.log(this.x, this.x);
+    if(this.draw){
     this.ball = this.draw.circle(10).attr({
       cx: this.x,
       cy: this.y,
       fill: '#fff'
     });
+  }
   }
 
 }

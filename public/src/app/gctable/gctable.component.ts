@@ -132,7 +132,24 @@ export class GctableComponent implements OnInit {
     this.putGameEvent(this.match._id, this.updatedGame._id, this.newGameEventObj);
     this.putGameData(this.match._id, this.updatedGame);
   }
+  setGamesWon(){
+    var p1GamesWon=0;
+    var p2GamesWon=0;
+    for (let game of this.match.games) {
 
+      if (game.winner === "p1") {
+        p1GamesWon++;
+      }
+      else if (game.winner === "p2") {
+        p2GamesWon++;
+      }
+    }
+    console.log("setting games won",
+  this.match)
+    this.match.p1_games_won=p1GamesWon;
+    this.match.p2_games_won=p2GamesWon;
+
+  }
 
   submitNonScoringEvent() {
     console.log("submitting non-scoring event")
@@ -154,14 +171,14 @@ export class GctableComponent implements OnInit {
       this.updatedGame.game_complete = true;
 
       this.putGameData(this.match._id, this.updatedGame);
-      this.match.p1_games_won +=1;
+      this.setGamesWon()
       this.putMatch(this.match)
     }
     if (this.newGameEventObj.type == "P2 Wins Game") {
       this.updatedGame.winner = "p2";
       this.updatedGame.game_complete = true;
       this.putGameData(this.match._id, this.updatedGame);
-      this.match.p2_games_won +=1;
+      this.setGamesWon()
       this.putMatch(this.match)
     }
     if (this.newGameEventObj.type == "P1 Wins Match") {
