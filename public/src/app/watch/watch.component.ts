@@ -77,5 +77,8 @@ gameUpdateConnection;
     });
   }
 
+  setGameIndex(idx: number) {
+    this.gameIndex = idx;
+  }
 
 }

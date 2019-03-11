@@ -26,11 +26,13 @@ export class TableComponent implements OnInit {
   centerLine: any;
   net: any;
   ball: any;
+  balls: any;
   target: any;
   parent: any;
 
   ngOnInit() {
     this.makeTable();
+    this.balls = this.draw.group();
     this.game = this.match.games[this.gameIndex];
     this.drawPreviousBalls(this.game);
     this.gameEventConnection = this._socket
@@ -49,16 +51,18 @@ export class TableComponent implements OnInit {
         }
     });
   }
+
   ngOnChanges() {
     this.game = this.match.games[this.gameIndex];
     this.drawPreviousBalls(this.game);
   }
+
   ngOnDestroy() {
     this.gameEventConnection.unsubscribe();
   }
 
   makeTable() {
-    this.draw = SVG('drawing').size(640, 356)
+    this.draw = SVG('drawing').size(640, 356);
     this.table = this.draw.rect(640, 356).attr({
       'fill': '#022b6d',
       'stroke': '#fff',
@@ -75,7 +79,9 @@ export class TableComponent implements OnInit {
   }
 
   drawPreviousBalls(game: Game) {
-    console.log('in the drawPreviousBalls function')
+    if (this.balls) {
+      this.balls.clear();
+    }
     for (let gameEvent of game.game_events) {
       if (gameEvent.x) {
         this.drawBall(gameEvent.x, gameEvent.y);
@@ -86,14 +92,15 @@ export class TableComponent implements OnInit {
   drawBall(x: number, y: number) {
     this.x = x;
     this.y = y;
-    // console.log(this.x, this.x);
+    
     if(this.draw){
-    this.ball = this.draw.circle(10).attr({
-      cx: this.x,
-      cy: this.y,
-      fill: '#fff'
-    });
-  }
+      this.ball = this.draw.circle(10).attr({
+        cx: this.x,
+        cy: this.y,
+        fill: '#fff'
+      });
+      this.balls.add(this.ball);
+    }
   }
 
 }
