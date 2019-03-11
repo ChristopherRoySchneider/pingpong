@@ -26,11 +26,13 @@ export class TableComponent implements OnInit {
   centerLine: any;
   net: any;
   ball: any;
+  balls: any;
   target: any;
   parent: any;
 
   ngOnInit() {
     this.makeTable();
+    this.balls = this.draw.group();
     this.game = this.match.games[this.gameIndex];
     this.drawPreviousBalls(this.game);
     this.gameEventConnection = this._socket
@@ -51,8 +53,6 @@ export class TableComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.draw.clear();
-    this.makeTable();
     this.game = this.match.games[this.gameIndex];
     this.drawPreviousBalls(this.game);
   }
@@ -79,6 +79,9 @@ export class TableComponent implements OnInit {
   }
 
   drawPreviousBalls(game: Game) {
+    if (this.balls) {
+      this.balls.clear();
+    }
     for (let gameEvent of game.game_events) {
       if (gameEvent.x) {
         this.drawBall(gameEvent.x, gameEvent.y);
@@ -96,6 +99,7 @@ export class TableComponent implements OnInit {
         cy: this.y,
         fill: '#fff'
       });
+      this.balls.add(this.ball);
     }
   }
 
