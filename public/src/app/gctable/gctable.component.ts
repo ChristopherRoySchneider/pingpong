@@ -47,6 +47,7 @@ export class GctableComponent implements OnInit {
   centerLine: any;
   net: any;
   ball: any;
+  balls: any;
   target: any;
   parent: any;
 
@@ -69,7 +70,7 @@ export class GctableComponent implements OnInit {
 
   ngOnInit() {
     this.makeTable();
-    // console.log("gameIndex",this.gameIndex)
+    this.balls = this.draw.group();
     this.newGameEventObj.p1_points_scored = this.match.games[this.gameIndex][
       "p1_points_scored"
     ];
@@ -79,13 +80,14 @@ export class GctableComponent implements OnInit {
     this.drawPreviousBalls(this.match.games[this.gameIndex]);
     this.updatedGame = this.match.games[this.gameIndex];
   }
+
   ngOnChanges(){
-    console.log("this.gameIndex",this.gameIndex)
     this.updatedGame = this.match.games[this.gameIndex];
     this.newGameEventObj.p1_points_scored=this.match.games[this.gameIndex]['p1_points_scored']
     this.newGameEventObj.p2_points_scored=this.match.games[this.gameIndex]['p2_points_scored']
-    if(this.draw){    this.drawPreviousBalls(this.match.games[this.gameIndex]);}
-
+    if(this.draw) {
+      this.drawPreviousBalls(this.match.games[this.gameIndex]);
+    }
   }
 
   makeTable() {
@@ -226,8 +228,6 @@ export class GctableComponent implements OnInit {
     }
   }
 
-
-
   putGameEvent(matchId, gameId, newGameEvent) {
     newGameEvent.createdAt = new Date().toISOString();
     newGameEvent.updatedAt = new Date().toISOString();
@@ -249,6 +249,7 @@ export class GctableComponent implements OnInit {
       }
     });
   }
+
   putGameData(matchId, updatedGame) {
     console.log("sending updated game data:", updatedGame);
 
@@ -269,7 +270,9 @@ export class GctableComponent implements OnInit {
   }
 
   drawPreviousBalls(game: Game) {
-    // console.log('in the drawPreviousBalls function')
+    if (this.balls) {
+      this.balls.clear();
+    }
     for (let gameEvent of game.game_events) {
       if (gameEvent.x) {
         this.drawBall(gameEvent.x, gameEvent.y);
@@ -280,16 +283,16 @@ export class GctableComponent implements OnInit {
   drawBall(x: number, y: number) {
     this.x = x;
     this.y = y;
-    // console.log(this.x, this.x);
+
     this.ball = this.draw.circle(10).attr({
       cx: this.x,
       cy: this.y,
       fill: '#fff'
     });
+    this.balls.add(this.ball);
   }
 
   putMatch(updatedMatch) {
-
     console.log(updatedMatch);
     let observable = this._http.putMatch(updatedMatch);
     observable.subscribe(data => {
@@ -300,9 +303,7 @@ export class GctableComponent implements OnInit {
         this.errors = data['error'];
         console.log(this.errors);
       } else {
-
         this._socket.sendMatchUpdate(updatedMatch);
-
         this.errors = null;
       }
     });

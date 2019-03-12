@@ -7,7 +7,6 @@
       <select name="gameIndex" [(ngModel)]="gameIndex" class="form-control-sm">
         <option *ngFor="let game of match.games; let i=index" type="number" value="{{ i }}">GAME {{ i+1 }}</option>
       </select>
-      <button class="btn btn-sm btn-primary ml-3" (click)="setGameIndex(gameIndex)">SUBMIT</button>
     </form>
   </div>
   <app-table *ngIf="match" [match]="match" [gameIndex]="gameIndex"></app-table>
